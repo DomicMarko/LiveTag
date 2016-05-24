@@ -1,0 +1,60 @@
+
+.galerija1 {
+	float: left;
+	width: 250px;
+	height: 250px;
+	max-width: 250px;
+	margin-right: 10px;
+	position: relative;
+}
+
+.galerija2 {
+	width: 250px;
+	height: 250px;
+	float: left;
+	margin-right: 10px;
+	position: relative;
+}
+
+.galerija3 {
+	float: left;
+	width: 250px;
+	height: 250px;
+	position: relative;
+}
+
+.lajkovi {
+	position: absolute;
+	bottom: 0;
+	
+}
+
+.galerija1 img {
+	max-width:100%; 
+	max-height:90%;
+	margin:auto;
+	display:block;
+}
+
+.galerija2 img {
+	max-width:100%; 
+	max-height:90%;
+	margin:auto;
+	display:block;
+}
+
+.galerija3 img {
+	max-width:100%; 
+	max-height:90%;
+	margin:auto;
+	display:block;
+}
+
+.glavnidiv {
+	position: relative;
+	margin: auto;
+	top: 25px;
+	right: 0;
+	bottom: 0;
+	left: 250px;
+}

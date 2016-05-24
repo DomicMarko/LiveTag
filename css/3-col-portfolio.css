@@ -1,0 +1,51 @@
+/*!
+ * Start Bootstrap - 3 Col Portfolio HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ * Edited by Marko Domić for LiveTag project
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
+.likeLink, .deleteLink, .votes {
+	float: right;
+	cursor: pointer;
+}
+
+.usernameLink {
+	float: left;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.controls {
+	width: 100%;
+	float: right;
+	text-align: right;
+	display: block;
+}
+
+.row {
+	margin-bottom: 20px;
+}
+
+.votes {
+	float: right;
+	margin-right: 10px;
+}
+
+.container {
+	max-width: 900px;
+}
+
+.topicHeader {
+	text-align: center;
+}

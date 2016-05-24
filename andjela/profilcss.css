@@ -1,0 +1,56 @@
+
+.kolone {
+	width: 300px;
+	height: 400px;
+	max-width: 300px;
+}
+
+.kolone2 {
+	width: 800px;
+	height: 400px;
+}
+
+.podeli {
+	float: left;
+	margin: 10px;
+}
+
+#desnidiv {
+	text-align: center;
+}
+
+.picsize {
+	width:250px;
+}
+
+.picsize img {
+	width: 100%;
+	height: auto;
+	display:table-cell; text-align:center; vertical-align:middle;
+}
+
+#slika1 {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+#slika1 img {
+	max-height: 180px;
+}
+
+#slika2 {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+#slika2 img {
+	max-height: 180px;
+}
+
+#slika3 {
+	display: inline-block;
+}
+
+#slika3 img {
+	max-height: 180px;
+}
