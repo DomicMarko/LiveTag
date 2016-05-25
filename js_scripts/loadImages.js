@@ -186,6 +186,8 @@ function addUsersVotes(addPoint, data) {
 			
 			var liElement = document.createElement('li');
 
+			var aElementUser = document.createElement('a');
+			aElementUser.setAttribute('href', '../andjela/profil.php?userID=' + arrayOfVotes[i].userID);
 			var imgDivElement = document.createElement('div');
 			var imgUser = document.createElement('img');
 			imgUser.setAttribute('src', '../andjela/' + arrayOfVotes[i].avatarURL);
@@ -196,8 +198,10 @@ function addUsersVotes(addPoint, data) {
 			var h3Element = document.createElement('h3');
 			h3Element.innerHTML = arrayOfVotes[i].username;
 			
-			liElement.appendChild(imgDivElement);
-			liElement.appendChild(h3Element);
+			aElementUser.appendChild(imgDivElement);
+			aElementUser.appendChild(h3Element);
+			
+			liElement.appendChild(aElementUser);
 			
 			ulElement.appendChild(liElement);
 		}

@@ -1,11 +1,7 @@
 <?php
 
     require_once('../genal/checklogin.php');
-	/*
-	$_SESSION["userID"]=0;
-    $_SESSION["userName"]='Gost';
-    $_SESSION["userType"]='guest';
-*/
+	
 ?>
 
 <!DOCTYPE html>

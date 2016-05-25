@@ -58,7 +58,7 @@
 			$db = $dbb->getDb();			
 			
 			// get all products from products table
-			$result = mysqli_query($db, "INSERT INTO slika_post (SlikaURL, KorisnikID, TopikID, BrojGlasova) VALUES ('$target_file', '$userID', 1, 0)") or die(mysql_error());
+			$result = mysqli_query($db, "INSERT INTO slika_post (SlikaURL, KorisnikID, TopikID, BrojGlasova) VALUES ('$target_file', '$userID', '$topicID', 0)") or die(mysql_error());
 				
 			if($result) {
 				

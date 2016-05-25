@@ -52,12 +52,20 @@
 			if($top5Users != 0) {
 				
 				$queryDayBefore = "UPDATE topik " . 
-				"SET PrvoMesto = " . $top5Users[0] . ", DrugoMesto = " . $top5Users[1] . ", TreceMesto = " . $top5Users[2] . ", CetvrtoMesto = " . $top5Users[3] . ", PetoMesto = " . $top5Users[4] . ", Objavljen = 2 " .                                   
+				"SET PrvoMesto = " . $top5Users[0] . ", DrugoMesto = " . $top5Users[1] . ", TreceMesto = " . $top5Users[2] . ", CetvrtoMesto = " . $top5Users[3] . ", PetoMesto = " . $top5Users[4] . " " .                                   
 				"WHERE DatumObjave = '" . $this->dayBefore . "'";
 				
 				// update topic of the day before
 				$resultUpdatedTopicDayBefore = mysqli_query($this->db, $queryDayBefore) or die(mysqli_error("Došlo je do greške pri update-ovanju topika prethodnog dana."));
-			}												
+			}
+			
+			$queryDayBeforeStatus = "UPDATE topik " . 
+				"SET Objavljen = 2 " .                                   
+				"WHERE DatumObjave = '" . $this->dayBefore . "'";
+				
+			// update topic of the day before
+			$resultUpdatedTopicDayBeforeStatus = mysqli_query($this->db, $queryDayBeforeStatus) or die(mysqli_error("Došlo je do greške pri update-ovanju topika prethodnog dana."));												
+			
 			
 			$queryToday = "UPDATE topik " . 
 				"SET Objavljen = 1 " . 

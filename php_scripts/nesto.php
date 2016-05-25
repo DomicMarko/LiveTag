@@ -19,5 +19,9 @@
 	$pronounce = new Pronounce($currentDate, $dayBefore, $db);
 	$a = $pronounce->updateTopics();
 
-	echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
+	echo $currentDate . "<br><br>" . $dayBefore . "<br><br>"; 
+
+	//echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
+
+	echo $a;
 ?>
