@@ -9,8 +9,12 @@
 	// include db connect class
 	require_once ('db_connect.php');
 	
+	// include Pronounce class
+	require_once ('pronounce_winners.php');
+	
 	$topikID = 0;
 	$topicsUserID = 0;
+	$topicPublished = -1;
 	
 	// array for JSON response
 	$response = array();
@@ -57,7 +61,7 @@
 		$response["sendTopic"] = false;
 	}
 
-	$queryTopic = "SELECT Naziv, TopikID, KorisnikID " .
+	$queryTopic = "SELECT Naziv, TopikID, KorisnikID, Objavljen " .
 		"FROM topik " . 
 		"WHERE DatumObjave = '" . $currentDate . "'";					
 	
@@ -72,112 +76,123 @@
 		$topicName = $rowTopic["Naziv"];
 		$topikID = $rowTopic["TopikID"];
 		$topicsUserID = $rowTopic["KorisnikID"];
-
+		$topicPublished = $rowTopic["Objavljen"];
 
 		$response["topicName"] = $topicName;
+		
+		
+		if($topicPublished == 0) {
 			
-	}
+			$pronounce = new Pronounce($currentDate, $dayBefore, $db);
+			$pronounce->updateTopics();
+		}
+			
+			
+		$queryBig = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
+			"(" .
+			"SELECT COUNT(*) " .
+			"FROM glasovi " . 
+			"WHERE SlikaID = s.SlikaID " . 
+			"AND KorisnikID = " . $logedInUserID . " " .
+			") AS Izglasano " . 
+			"FROM slika_post s, korisnik k " .
+			"WHERE s.KorisnikID = k.KorisnikID " .
+			"AND s.TopikID = " . $topikID . " " .
+			"AND k.TipKorisnika IN ('elite', 'premium') " .
+			"ORDER BY s.BrojGlasova DESC";
 	
-	$queryBig = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
-		"(" .
-		"SELECT COUNT(*) " .
-		"FROM glasovi " . 
-		"WHERE SlikaID = s.SlikaID " . 
-		"AND KorisnikID = " . $logedInUserID . " " .
-		") AS Izglasano " . 
-		"FROM slika_post s, korisnik k " .
-		"WHERE s.KorisnikID = k.KorisnikID " .
-		"AND s.TopikID = " . $topikID . " " .
-		"AND k.TipKorisnika IN ('elite', 'premium') " .
-		"ORDER BY s.BrojGlasova DESC";
-
-
-	$querySmall = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
-		"(" .
-		"SELECT COUNT(*) " .
-		"FROM glasovi " . 
-		"WHERE SlikaID = s.SlikaID " . 
-		"AND KorisnikID = " . $logedInUserID . " " .
-		") AS Izglasano " . 
-		"FROM slika_post s, korisnik k " .
-		"WHERE s.KorisnikID = k.KorisnikID " .
-		"AND s.TopikID = " . $topikID . " " .
-		"AND k.TipKorisnika IN ('basic') " .
-		"ORDER BY s.BrojGlasova DESC";
+	
+		$querySmall = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
+			"(" .
+			"SELECT COUNT(*) " .
+			"FROM glasovi " . 
+			"WHERE SlikaID = s.SlikaID " . 
+			"AND KorisnikID = " . $logedInUserID . " " .
+			") AS Izglasano " . 
+			"FROM slika_post s, korisnik k " .
+			"WHERE s.KorisnikID = k.KorisnikID " .
+			"AND s.TopikID = " . $topikID . " " .
+			"AND k.TipKorisnika IN ('basic') " .
+			"ORDER BY s.BrojGlasova DESC";
+			
+					
+		$queryUploadImg = "SELECT * " . 
+			"FROM slika_post " . 
+			"WHERE KorisnikID = " . $logedInUserID . " " . 
+			"AND TopikID = " . $topikID;
 		
-				
-	$queryUploadImg = "SELECT * " . 
-		"FROM slika_post " . 
-		"WHERE KorisnikID = " . $logedInUserID . " " . 
-		"AND TopikID = " . $topikID;
-	
-	
-	// get all big images from slika_post
-	$resultBig = mysqli_query($db, $queryBig) or die(mysqli_error());	
-	
-	// get all small images from slika_post
-	$resultSmall = mysqli_query($db, $querySmall) or die(mysqli_error());
-	
-	// get number of uploaded images from current user
-	$resultUpload = mysqli_query($db, $queryUploadImg) or die(mysqli_error());
-	
-	if ((mysqli_num_rows($resultUpload) > 0) || ($topicsUserID == $logedInUserID)) {
 		
-		$response["uploadImg"] = false;
-	} else {
+		// get all big images from slika_post
+		$resultBig = mysqli_query($db, $queryBig) or die(mysqli_error());	
 		
-		$response["uploadImg"] = true;
-	}
-	
-	// looping through all results
-	// products node
-	$response["big"] = array();
-	$response["small"] = array();			
-	
-	// number of big and small images from result
-	$numBig = mysqli_num_rows($resultBig);
-	$numSmall = mysqli_num_rows($resultSmall);	
-	
-	$response["countBig"] = $numBig;
-	$response["countSmall"] = $numSmall;
-	
-	
-	
-	// check for empty result in big images
-	if ($numBig > 0) {		
-				
-		while ($rowBig = mysqli_fetch_array($resultBig)) {
-			// temp user array
-			$productBig = array();
-			$productBig["slikaID"] = $rowBig["SlikaID"];
-			$productBig["url"] = $rowBig["SlikaURL"];
-			$productBig["glasovi"] = $rowBig["BrojGlasova"];
-			$productBig["userID"] = $rowBig["KorisnikID"];
-			$productBig["username"] = $rowBig["Username"];
-			$productBig["izglasano"] = $rowBig["Izglasano"];					
-	
-			// push single product into final response array
-			array_push($response["big"], $productBig);
+		// get all small images from slika_post
+		$resultSmall = mysqli_query($db, $querySmall) or die(mysqli_error());
+		
+		// get number of uploaded images from current user
+		$resultUpload = mysqli_query($db, $queryUploadImg) or die(mysqli_error());
+		
+		if ((mysqli_num_rows($resultUpload) > 0) || ($topicsUserID == $logedInUserID)) {
+			
+			$response["uploadImg"] = false;
+		} else {
+			
+			$response["uploadImg"] = true;
+		}
+		
+		// looping through all results
+		// products node
+		$response["big"] = array();
+		$response["small"] = array();			
+		
+		// number of big and small images from result
+		$numBig = mysqli_num_rows($resultBig);
+		$numSmall = mysqli_num_rows($resultSmall);	
+		
+		$response["countBig"] = $numBig;
+		$response["countSmall"] = $numSmall;
+		
+		
+		
+		// check for empty result in big images
+		if ($numBig > 0) {		
+					
+			while ($rowBig = mysqli_fetch_array($resultBig)) {
+				// temp user array
+				$productBig = array();
+				$productBig["slikaID"] = $rowBig["SlikaID"];
+				$productBig["url"] = $rowBig["SlikaURL"];
+				$productBig["glasovi"] = $rowBig["BrojGlasova"];
+				$productBig["userID"] = $rowBig["KorisnikID"];
+				$productBig["username"] = $rowBig["Username"];
+				$productBig["izglasano"] = $rowBig["Izglasano"];					
+		
+				// push single product into final response array
+				array_push($response["big"], $productBig);
+			}
+		}
+		
+		// check for empty result in small images
+		if ($numSmall > 0) {		
+					
+			while ($rowSmall = mysqli_fetch_array($resultSmall)) {
+				// temp user array
+				$productSmall = array();
+				$productSmall["slikaID"] = $rowSmall["SlikaID"];
+				$productSmall["url"] = $rowSmall["SlikaURL"];
+				$productSmall["glasovi"] = $rowSmall["BrojGlasova"];
+				$productSmall["userID"] = $rowSmall["KorisnikID"];
+				$productSmall["username"] = $rowSmall["Username"];
+				$productSmall["izglasano"] = $rowSmall["Izglasano"];					
+		
+				// push single product into final response array
+				array_push($response["small"], $productSmall);
+			}
 		}
 	}
 	
-	// check for empty result in small images
-	if ($numSmall > 0) {		
-				
-		while ($rowSmall = mysqli_fetch_array($resultSmall)) {
-			// temp user array
-			$productSmall = array();
-			$productSmall["slikaID"] = $rowSmall["SlikaID"];
-			$productSmall["url"] = $rowSmall["SlikaURL"];
-			$productSmall["glasovi"] = $rowSmall["BrojGlasova"];
-			$productSmall["userID"] = $rowSmall["KorisnikID"];
-			$productSmall["username"] = $rowSmall["Username"];
-			$productSmall["izglasano"] = $rowSmall["Izglasano"];					
 	
-			// push single product into final response array
-			array_push($response["small"], $productSmall);
-		}
-	}
+	
+	
 	
 	// echo response as JSON
 	echo json_encode($response);
