@@ -26,7 +26,9 @@
 	
 	$db = $dbb->getDb();
 	
-	$currentDate = date("Y-m-d");
+	$currentDate = date("Y-m-d");	
+	$dayBeforeTemp = strtotime("-1 day", strtotime($currentDate));
+	$dayBefore = date("Y-m-d", $dayBeforeTemp);
 	
 	//check if user can send topic
 	if($logedInUserType == 'elite') {
