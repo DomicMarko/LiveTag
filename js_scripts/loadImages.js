@@ -75,11 +75,16 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aLargeImg.setAttribute('href',"#");
 	
 	var imgLarge = document.createElement("img");
-	imgLarge.setAttribute('class', 'img-responsive');
+	imgLarge.setAttribute('class', 'img-responsive largeImg');
 	imgLarge.id = 'image_' + imgID;
 	imgLarge.setAttribute('src', imgUrl);
+	
+	var imgLargeDivWrapper = document.createElement("div");
+	imgLargeDivWrapper.setAttribute('class', 'largeImgWrapper');
+	
+	imgLargeDivWrapper.appendChild(imgLarge);
 
-	aLargeImg.appendChild(imgLarge);
+	aLargeImg.appendChild(imgLargeDivWrapper);
 	divLarge.appendChild(aLargeImg);
 	
 	divRow.appendChild(divLarge);
@@ -99,11 +104,16 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aSmallImg.setAttribute('href',"#");
 	
 	var imgSmall = document.createElement("img");
-	imgSmall.setAttribute('class', 'img-responsive');
+	imgSmall.setAttribute('class', 'img-responsive smallImg');
 	imgSmall.id = 'image_' + imgID;
 	imgSmall.setAttribute('src', imgUrl);
 	
-	aSmallImg.appendChild(imgSmall);
+	var imgSmallDivWrapper = document.createElement("div");
+	imgSmallDivWrapper.setAttribute('class', 'smallImgWrapper');
+	
+	imgSmallDivWrapper.appendChild(imgSmall);
+	
+	aSmallImg.appendChild(imgSmallDivWrapper);
 	
 	var divControls = document.createElement('div');
 	divControls.className = 'controls';
@@ -272,6 +282,15 @@ function loadContent(data, userType) {
 		}
 	}
 	
+	var h4ElementList = document.createElement('h4');
+	var aUploadLinkList = document.createElement('a');
+		
+	aUploadLinkList.setAttribute('href', '#');
+	aUploadLinkList.setAttribute('target', '_self');
+	aUploadLinkList.innerHTML = 'Spisak topika i pobednika';
+		
+	h4ElementList.appendChild(aUploadLinkList);
+	document.getElementById('uploadLink').appendChild(h4ElementList);
 	
 
 	for( i = 0, j = 0; i < bigImagesArray.length; i++ ) {
