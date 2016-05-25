@@ -1,23 +1,35 @@
 <?php 
 session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]=true){
-  header("Location: index.php");
+  header("Location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Register</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div style="width:180px">
+<div class="form-wrap" style="width:181px">
+<div style="text-align:center">
+<h1>LiveTag</h1>
+</div>
+
 <form name="regform" method="POST" action="loginauth.php" onsubmit="return validate()">
-	
-	<input name="username" type="text" placeholder="Username"></input>
-	<input name="password" type="password" placeholder="Password"></input>
-	<input name ="submit" type="submit" value="Login"></input>
+	<input name="username" type="text" placeholder="Username">
+	<input name="password" type="password" placeholder="Password">
+	<input class="dugme" name ="submit" type="submit" value="Login">
 </form> 
-<a href="register.php">Registruj se</a>
+
+
+<form action="guest.php" name="gostform" method="POST" >
+  <input class="dugme" name ="submit2" type="submit" value="Udji kao gost">
+</form>
+
+<div style="text-align:center">
+<a class="reglog" href="register.php">Registruj se</a>
+</div>
 </div>
 
 </body>
