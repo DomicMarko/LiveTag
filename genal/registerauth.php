@@ -28,13 +28,28 @@ if (mysqli_connect_errno($con))
 		$result= mysqli_query($con,"SELECT * FROM korisnik WHERE Username='$username' LIMIT 1");
 		
 		 if(mysqli_num_rows($result)==1){
-		 	echo 'Uspesno ste napravili nalog <br><a href="login.php" >Login</a>';
-		 	exit();
-		 }else {echo 'Greska proverite podatke i<br><a href="register.php" >Pokusajte ponovo</a>';exit();}
-	}else {echo 'Username ili email vec postoji <br><a href="register.php" >Pokusajte ponovo</a>'; exit();}
+		 	$output='Uspesno ste napravili nalog ';
+		 	$link='<a style="padding:5px 0px" class="dugme" href="login.php">Login</a>';
+		 }else {$output='Greska proverite podatke ';$link='<a style="padding:5px 0px" class="dugme" href="register.php">Pokusaj ponovo</a>';}
+	}else {$output= 'Username ili email vec postoji';$link='<a style="padding:5px 0px" class="dugme" href="register.php">Pokusaj ponovo</a>'; }
 }else header("Location: ../index.php");
 mysqli_close($con);	
 
 
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="form-wrap" style="width:181px;text-align:center">
+<h1>LiveTag</h1>
+<h2><?php echo $output?>
+</h2>
+<?php echo $link ?>
+
+</div>
+</body>

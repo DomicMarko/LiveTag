@@ -8,14 +8,19 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]=true){
 <html>
 <head>
 	<title>Register</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div style="width:180px">
+<div class="form-wrap" style="width:181px">
+<div style="text-align:center">
+<h1>LiveTag</h1>
+</div>
 <form name="regform" method="POST" action="registerauth.php" onsubmit="return validate()">
 	
-	<input name="ime" type="text" placeholder="Ime"></input>
+	<input name="ime" type="text" placeholder="Ime">
 	<input name="prezime" type="text" placeholder="Prezime"></input>
-	Datum rodjenja<br>
+	<div style="text-align:center">
+  Datum rodjenja<br>
 <?php
 	$days = range(1, 31);
 	$months=range(1,12);
@@ -49,16 +54,21 @@ foreach($years as $year) {
 ?>
 
 </select>
+</div>
 	<input name="mesto" type="text" placeholder="Mesto stanovanja"></input>
-	<input name="pol" type="radio" value="M">Musko</input>
-	<input name="pol" type="radio" value="Z">Zensko</input>
+  <div style="text-align:center">
+  	<input name="pol" type="radio" value="M">Musko</input>
+  	<input name="pol" type="radio" value="Z">Zensko</input>
+  </div>
 	<input name="email" type="text" placeholder="Email"></input>
 	<input name ="username" type="text" placeholder="Username"></input>
 	<input name ="password" type="password" placeholder="Password"></input>
-	<input name ="reapeatpass" type="password" placeholder="PonoviP assword"></input>
-	<input name ="submit" type="submit" value="Registruj se"></input>
+	<input name ="reapeatpass" type="password" placeholder="Ponovi password"></input>
+	<input class="dugme" name ="submit" type="submit" value="Registruj se"></input>
+
 </form> 
-<a href="login.php">Login</a>
+<div style="text-align:center">
+  <a class="reglog" href="login.php">Login</a></div>
 </div>
 
 </body>
@@ -70,7 +80,7 @@ foreach($years as $year) {
          
          if (atpos < 1 || ( dotpos - atpos < 2 )) 
          {
-            alert("Please enter correct email ID")
+            alert("Unesite korektan mail");
             document.regform.email.focus() ;
             return false;
          }

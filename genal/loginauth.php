@@ -20,11 +20,26 @@ if (mysqli_connect_errno($con))
         $_SESSION["userName"]=$username;
         $_SESSION["userType"]=$row["TipKorisnika"];
         header("Location: ../index.php");
-      }else echo "Ne valja";
-    }else echo "Ne valja 2";
+      }else $output="Username ili password nisu tacni";
+    }else $output="Username ili password nisu tacni";
 } else header("Location: login.php");
 mysqli_close($con);  
 
 
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="form-wrap" style="width:181px;text-align:center">
+<h1>LiveTag</h1>
+<h2><?php echo $output?>
+</h2>
+<a style="padding:5px 0px" class="dugme" href="login.php">Pokusaj ponovo</a>
+
+</div>
+</body>
