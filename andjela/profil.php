@@ -93,6 +93,7 @@
 	if (isset($_POST['action']) && $_POST['action']=='Obrisi korisnika') {
 		$query = "DELETE FROM korisnik WHERE KorisnikID=" . $userdata[0];
 		$konekcija->doQuery($query);
+		header('Location: ../view/index.php');
 	}
 ?>
 
@@ -137,10 +138,10 @@
 					echo "<div class='picsize'><img src='" . $target . "'></div>";
 					header('Location: profil.php?userID=' . $userID);
 				}
-				else if ($userdata[11] == NULL) {
+				else if ($userdata[12] == NULL) {
 					echo "<div class='picsize'><img src='slike/default_user.png'></div>";
 				}
-				else echo "<div class='picsize'><img src='". $userdata[11] . "'></div>";
+				else echo "<div class='picsize'><img src='". $userdata[12] . "'></div>";
 			?>
 			</br></br>
 			<?php

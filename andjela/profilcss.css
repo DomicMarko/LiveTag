@@ -76,7 +76,6 @@
     margin: auto;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
 	
 	border-radius: 8px;
@@ -143,5 +142,5 @@ input[type=submit]:hover, input[type=button]:hover, a:hover {
 }
 
 font {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
 }
