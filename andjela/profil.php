@@ -37,7 +37,8 @@
 				echo "Niste potvrdili lozinku! Pokusajte ponovo.";
 			}
 			else {
-				$query = "UPDATE korisnik SET Password='" . $pass . "' WHERE Username='" . $userdata[1] . "'";
+				$hash=password_hash($pass,PASSWORD_DEFAULT);
+				$query = "UPDATE korisnik SET Password='" . $hash . "' WHERE Username='" . $userdata[1] . "'";
 				$konekcija->doQuery($query);
 			}
 			header('Location: profil.php?userID=' . $userID);
@@ -93,7 +94,6 @@
 	if (isset($_POST['action']) && $_POST['action']=='Obrisi korisnika') {
 		$query = "DELETE FROM korisnik WHERE KorisnikID=" . $userdata[0];
 		$konekcija->doQuery($query);
-		header('Location: ../view/index.php');
 	}
 ?>
 
@@ -138,10 +138,10 @@
 					echo "<div class='picsize'><img src='" . $target . "'></div>";
 					header('Location: profil.php?userID=' . $userID);
 				}
-				else if ($userdata[12] == NULL) {
+				else if ($userdata[11] == NULL) {
 					echo "<div class='picsize'><img src='slike/default_user.png'></div>";
 				}
-				else echo "<div class='picsize'><img src='". $userdata[12] . "'></div>";
+				else echo "<div class='picsize'><img src='". $userdata[11] . "'></div>";
 			?>
 			</br></br>
 			<?php
