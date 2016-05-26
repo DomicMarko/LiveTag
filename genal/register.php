@@ -7,7 +7,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]=true){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>Registracija</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
