@@ -9,9 +9,11 @@
 
 			$info = mysql_fetch_array(mysql_query("SELECT * FROM `korisnik` WHERE `username` = 'admin'"));
 			$namedb = $info['Password'];
-			
-			if($name == $namedb && $name != '' && $name2 != '') {
-			mysql_query("UPDATE korisnik SET Password='$name2' WHERE username = 'admin'") or die(mysql_error());
+			$hash=password_hash($pass,PASSWORD_DEFAULT);
+			if(password_verify($name,$namedb) && $name != '' && $name2 != '') {
+				
+
+			mysql_query("UPDATE korisnik SET Password='$hash' WHERE username = 'admin'") or die(mysql_error());
 			header("Location: adminpanel.php?Message7=" . urlencode('Uspesno ste promenili lozinku administratora.'));
 			}
 			else if($name == '' || $name2 =='' || ($name == '' && $name2 =='')){
