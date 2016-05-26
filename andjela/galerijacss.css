@@ -26,7 +26,6 @@
 .lajkovi {
 	position: absolute;
 	bottom: 0;
-	
 }
 
 .galerija1 img {
@@ -34,6 +33,8 @@
 	max-height:90%;
 	margin:auto;
 	display:block;
+	position: absolute;
+	bottom: 30;
 }
 
 .galerija2 img {
@@ -41,6 +42,8 @@
 	max-height:90%;
 	margin:auto;
 	display:block;
+	position: absolute;
+	bottom: 30;
 }
 
 .galerija3 img {
@@ -48,13 +51,12 @@
 	max-height:90%;
 	margin:auto;
 	display:block;
+	position: absolute;
+	bottom: 30px;
 }
 
 .glavnidiv {
-	position: relative;
-	margin: auto;
-	top: 25px;
-	right: 0;
-	bottom: 0;
-	left: 250px;
+	display: table;
+    margin: 0 auto;
+	margin-top: 60px;
 }

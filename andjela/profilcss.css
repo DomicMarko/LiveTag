@@ -1,32 +1,86 @@
+#sve, #divusername {
+	display: table;
+    margin: 0 auto;
+}
 
-.kolone {
+.divprofilna {
 	width: 300px;
 	height: 400px;
 	max-width: 300px;
+	float: left;
+	
 }
 
-.kolone2 {
+.divpodaci {
 	width: 800px;
 	height: 400px;
+	float: left;
+}
+
+#kompletna {
+	position: relative;
+	top: 200px;
 }
 
 .podeli {
 	float: left;
-	margin: 10px;
 }
 
 #desnidiv {
+	float: left;
 	text-align: center;
+	height: 400px;
+	width: 250px;
+	margin-left: 20px;
+	position: relative;
+}
+
+#divlozinka {
+	clear: left;
+	height: 50px;
+	position: relative;
+	top: 54px;
+}
+
+#skrivenalozinka {
+	visibility:hidden;
+}
+
+.divskriveni {
+	height: 100px;
+	position: absolute;
+	
+	margin: auto;
+    left:0;
+	right: 0;
+	top: 0;
+	bottom: 0;
 }
 
 .picsize {
 	width:250px;
+	height:400px;
+	position: relative;
+	/*display: table;
+    margin: 0 auto;*/
 }
 
 .picsize img {
-	width: 100%;
-	height: auto;
-	display:table-cell; text-align:center; vertical-align:middle;
+	width: auto;
+	max-height: 400px;
+	max-width: 250px;
+	position: absolute;
+    left: 0;
+    top: 0;
+	/*display: block;
+    margin-left: auto;
+    margin-right: auto;*/
+}
+
+#malagalerija {
+	clear: left;
+	position: relative;
+	top: 200px;
 }
 
 #slika1 {
@@ -53,4 +107,16 @@
 
 #slika3 img {
 	max-height: 180px;
+}
+
+input[type=submit], input[type=button] {
+	background-color: #4CAF50;
+	border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+	border-radius: 8px;
 }

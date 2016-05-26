@@ -12,8 +12,6 @@ class Konekcija {
 	
 	public function doQuery($query) {
 		$rezultat = mysqli_query($this->conn, $query) or die(mysqli_error());
-		echo "<br />Rezultat je: $rezultat<br />";
-		// ispis upita zbog provere njegove ispravnosti
 	}
 	
 	public function getRecord($query) {
@@ -25,11 +23,6 @@ class Konekcija {
 				return 0;
 			} else {
 				$row = mysqli_fetch_row($result);
-				// sada se rezultat stavlja u numericki niz
-				/*foreach ($row as $value) {
-					echo $value . ' ';
-					echo '<br />';
-				}*/
 				return $row;
 			}
 		}
@@ -48,10 +41,6 @@ class Konekcija {
 			}
 			while ($row = mysqli_fetch_assoc($result)) {
 				$niz[] = $row;
-				/*foreach ($row as $value) {
-					echo $value . ' ';
-					echo '<br />';
-				}*/
 			}
 			return $niz;
 		}

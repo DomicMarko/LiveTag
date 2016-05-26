@@ -104,7 +104,7 @@
 				echo pravopis($lajkovi3[0]) . "</div></div>";
 			}
 		}
-		echo "</div></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>";
+		echo "</div>";
 	}
 	echo "<input type='hidden' value='" . $userID ."' name='userID'>";
 	echo "</form>";
