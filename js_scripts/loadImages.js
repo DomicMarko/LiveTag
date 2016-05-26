@@ -72,7 +72,8 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	divLarge.appendChild(divControls);
 	
 	var aLargeImg = document.createElement('a');
-	aLargeImg.setAttribute('href',"#");
+	aLargeImg.setAttribute('href', imgUrl);
+	aLargeImg.setAttribute('class','fancybox-effects-a');
 	
 	var imgLarge = document.createElement("img");
 	imgLarge.setAttribute('class', 'img-responsive largeImg');
@@ -101,7 +102,8 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	divSmall.className = 'col-md-4 portfolio-item';
 	
 	var aSmallImg = document.createElement('a');
-	aSmallImg.setAttribute('href',"#");
+	aSmallImg.setAttribute('href', imgUrl);
+	aSmallImg.setAttribute('class','fancybox-effects-a');
 	
 	var imgSmall = document.createElement("img");
 	imgSmall.setAttribute('class', 'img-responsive smallImg');
@@ -253,6 +255,18 @@ function loadContent(data, userType) {
 	} else {
 		admin = false;
 	}	
+	
+	if(isMessage) {
+		
+		var aMessage = document.createElement('a');
+		aMessage.setAttribute('href', '#');
+		aMessage.setAttribute('id', 'newMessage');
+		aMessage.innerHTML = 'NOVA PORUKA!';
+		
+		document.getElementById("newMessage").appendChild(aMessage);
+		document.getElementById("hiddenNewMessage").setAttribute('data-value', message);
+	}
+
 	
 	document.getElementById("topic").innerHTML = topicName;
 	
@@ -413,6 +427,21 @@ function votes(usersPoint, imgID) {
     });
 }
 
+function clearMessage() {
+	
+	var userID = document.getElementById('hiddenInfoUserID').getAttribute('data-value');
+	
+	$.ajax({
+		async: true,
+    	type: "POST",
+        url: "../php_scripts/clear_message.php",
+		data: {'userID': userID},
+        error: function(result){
+	        alert("Error: " + result);                
+        }
+    });
+}
+
 window.onload = function() {
 	
 	var userID = document.getElementById('hiddenInfoUserID').getAttribute('data-value');
@@ -454,6 +483,7 @@ function events() {
 		voteForImg(userID, imageID);
 	});	
 	
+	// events for votes modal
 	$('.votes').on("click", function() {
 		var modal = document.getElementById('modal-body');
 		var imageID = this.getAttribute('data-value');
@@ -467,10 +497,33 @@ function events() {
 		document.getElementById('modal-body').innerHTML = "";	
 	});
 	
+	
+	// events for message modal 
+	$('#newMessage').on("click", function() {
+		var modal = document.getElementById('modal-body-message');
+		var message = document.getElementById('hiddenNewMessage').getAttribute('data-value');
+		
+		modal.innerHTML = message;				
+		document.getElementById('myModalMessage').style.display = "block";		
+	});
+	
+	$('.close-message').on("click", function() {		
+		document.getElementById('myModalMessage').style.display = "none";
+		clearMessage();
+	});
+	
+	
 	window.onclick = function(event) {
+		// modal votes
    		if (event.target == document.getElementById('myModal')) {
      		document.getElementById('myModal').style.display = "none";
 			document.getElementById('modal-body').innerHTML = "";
+     	}
+		
+		// modal message
+		if (event.target == document.getElementById('myModalMessage')) {
+     		document.getElementById('myModalMessage').style.display = "none";
+			clearMessage();
      	}
 	}	
 	

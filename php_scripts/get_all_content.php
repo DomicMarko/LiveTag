@@ -38,7 +38,7 @@
 	if($logedInUserType == 'elite') {
 
 		$queryMessage = "SELECT StiglaPoruka, PorukaZaElite " . 
-			"FROM korisnik" . 
+			"FROM korisnik " . 
 			"WHERE KorisnikID = " . $logedInUserID;
 
 		$resultMessage = mysqli_query($db, $queryMessage) or die(mysqli_error());
@@ -58,13 +58,13 @@
 
 			$response["isMessage"] = true;
 			$response["message"] = $message;
-
+/*
 			$queryUpdateMessage = "UPDATE korisnik " . 
 				"SET StiglaPoruka = 0, PorukaZaElite = null " . 
 				"WHERE KorisnikID = " . $logedInUserID;
 
 			$resultUpdateMessage = mysqli_query($db, $queryUpdateMessage) or die(mysqli_error());	
-										
+*/
 		} else {
 
 			$response["isMessage"] = false;
