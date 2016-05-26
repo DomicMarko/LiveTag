@@ -84,7 +84,7 @@
 		if($topicPublished == 0) {
 			
 			$pronounce = new Pronounce($currentDate, $dayBefore, $db);
-			$pronounce->updateTopics();
+			$pronounce->updateService();
 		}
 			
 			

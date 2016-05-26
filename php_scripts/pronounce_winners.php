@@ -45,7 +45,7 @@
 			return $response;
 		}
 		
-		public function updateTopics() {
+		private function updateTopics() {
 			
 			$top5Users = $this->getTop5MostLikedUsers();
 
@@ -101,9 +101,13 @@
 				
 			// update today's topic
 			$resultUpdatedTopicToday = mysqli_query($this->db, $queryToday) or die(mysqli_error("Došlo je do greške pri update-ovanju današnjeg topika."));	
+							
+		}
+		
+		public function updateService() {
 			
-			return $top5Users;				
-		}				
+			$this->updateTopics();
+		}
 		
 	}
 

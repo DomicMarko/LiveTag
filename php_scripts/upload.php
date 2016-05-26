@@ -57,8 +57,11 @@
 			
 			$db = $dbb->getDb();			
 			
-			// get all products from products table
+			// insert into slika_post table
 			$result = mysqli_query($db, "INSERT INTO slika_post (SlikaURL, KorisnikID, TopikID, BrojGlasova) VALUES ('$target_file', '$userID', '$topicID', 0)") or die(mysql_error());
+
+			// update column ZadnjaObjava in korisnik table
+			$resultUpdate = mysqli_query($db, "UPDATE korisnik SET ZadnjaObjava = '$currentDate' WHERE KorisnikID = '$userID'") or die(mysql_error());
 				
 			if($result) {
 				
