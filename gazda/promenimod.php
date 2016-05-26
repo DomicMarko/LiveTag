@@ -13,7 +13,7 @@
 			if(password_verify($name,$namedb) && $name != '' && $name2 != '') {
  				$hash=password_hash($name2,PASSWORD_DEFAULT);
  
- 			mysql_query("UPDATE korisnik SET Password='$hash' WHERE username = 'admin'") or die(mysql_error());
+ 			mysql_query("UPDATE korisnik SET Password='$hash' WHERE username = 'mod'") or die(mysql_error());
 			header("Location: adminpanel.php?Message4=" . urlencode('Uspesno ste promenili lozinku moderatora.'));
 			}
 			else if($name == '' || $name2 =='' || ($name == '' && $name2 =='')){
