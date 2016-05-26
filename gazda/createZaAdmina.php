@@ -6,6 +6,12 @@
 			
 			$name = $_POST['inputName'];
 			
+			$result = mysql_query("SELECT TopikID FROM topik WHERE Naziv = '$name'");
+			if(mysql_num_rows($result) != 0) {
+				 header("Location: moderator.php?Messagex=" . urlencode('Taj topik vec postoji, probajte sa drugim.'));
+				 exit();
+			}
+			
 			if(trim($name) == ''){
 				header("Location: adminmoderator.php?Message1=" . urlencode('Niste uneli naziv topika, pokusajte ponovo.'));
 			}

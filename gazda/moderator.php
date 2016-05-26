@@ -128,6 +128,10 @@
 		
 	</div>
 <?php
+	if (isset($_GET['Messagex'])) {
+				$msg = $_GET['Messagex'];
+				echo "<script type='text/javascript'>alert('$msg');</script>";
+			}
 	if (isset($_GET['Message'])) {
 				$msg = $_GET['Message'];
 				echo "<script type='text/javascript'>alert('$msg');</script>";
