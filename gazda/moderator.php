@@ -84,7 +84,7 @@
 				
 				while($topiks = mysql_fetch_array($result)){
 					if($topiks['Objavljen'] == 0){
-					echo "<h3>" . $topiks['TopikID'] . ". ", $topiks['Naziv'] . " - " . "$topiks[DatumObjave]" . " " . "<a class=" . "klasica" . " href='deleteZaAdmina.php?del=$topiks[TopikID]'>delete</a>" . "</h3>";
+					echo "<h3>" . $topiks['TopikID'] . ". ", $topiks['Naziv'] . " - " . "$topiks[DatumObjave]" . " " . "<a class=" . "klasica" . " href='delete.php?del=$topiks[TopikID]'>delete</a>" . "</h3>";
 				   }
 				}
 			?>
@@ -102,7 +102,7 @@
 					$id1 = $topiks['KorisnikID'];
 					$info = mysql_fetch_array(mysql_query("SELECT * FROM `korisnik` WHERE `KorisnikID` = '$id1'"));
 					$username = $info['Username'];
-					echo "<h3>" . $topiks['Naziv'] . " - ", $username .  "<a class=" . "klasica" . " href='deletezahtevmod.php?del=$topiks[IDzahtev]'>Odbij</a>" . "<a class=" . "klasica" . " href='potvrdizahtevmod.php?novi=$topiks[IDzahtev]'>Potvrdi</a>" . "</h3>";
+					echo "<h3>" . $topiks['Naziv'] . " - ", $username .  "<a class=" . "klasica" . " href='deletezahtevmod.php?del=$topiks[ZahtevID]'>Odbij</a>" . "<a class=" . "klasica" . " href='potvrdizahtevmod.php?novi=$topiks[ZahtevID]'>Potvrdi</a>" . "</h3>";
 				}
 			?>
 			</div>

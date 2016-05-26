@@ -10,8 +10,13 @@
 				header("Location: adminmoderator.php?Message1=" . urlencode('Niste uneli naziv topika, pokusajte ponovo.'));
 			}
 			else{
+				$maxd = mysql_fetch_array(mysql_query("SELECT MAX(DatumObjave) FROM `topik` "));
+				$maxdate = $maxd[0];
+				$date = strtotime("+1 day", strtotime("$maxdate"));
+				$konacan = date("Y-m-d", $date);
+			
 				mysql_query("INSERT INTO topik (`TopikID`, `Naziv`, `DatumObjave`) 
-							VALUES(NULL, '$name', CURDATE())") or die(mysql_error());
+							VALUES(NULL, '$name', '$konacan')") or die(mysql_error());
 				header("Location: adminmoderator.php?Message1=" . urlencode('Uspesno ste uneli topik.'));
 			}
 ?>
