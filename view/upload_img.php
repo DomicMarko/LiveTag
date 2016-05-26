@@ -49,20 +49,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.php">LiveTag</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                    <?php
+                        if(($_SESSION['userType'] != 'guest') && ($_SESSION['userType'] != 'admin')) {
+                            echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\">" . $_SESSION['userName'] . "</a></li>"
+                                . "<li><a href=\"../genal/logout.php\">Logout</a></li>";
+                        } 
+                        if($_SESSION['userType'] == 'guest') {
+                            echo "<li><a href=\"../genal/logout.php\">Ulogujte se</a></li>";
+                        }
+                        if($_SESSION['userType'] == 'admin') {
+                            echo "<li><a href=\"../gazda/adminpanel.php\">Admin panel</a></li>" . 
+                                "<li><a href=\"../gazda/moderator.php\">Moderator panel</a></li>" . 
+                                "<li><a href=\"../genal/logout.php\">Logout</a></li>";
+                        }
+                    ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

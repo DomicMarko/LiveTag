@@ -48,11 +48,39 @@
 		public function updateTopics() {
 			
 			$top5Users = $this->getTop5MostLikedUsers();
-			
+
 			if($top5Users != 0) {
-				
+
+				$setToUpdate = "";
+
+				for($i = 0; $i < count($top5Users); $i++) {
+
+					switch ($i) {
+					    case 0:
+					    	$setToUpdate = $setToUpdate . "PrvoMesto = " . $top5Users[0];
+					        //$first = $top5Users[0];
+					        break;
+					    case 1:
+					    	$setToUpdate = $setToUpdate . ", DrugoMesto = " . $top5Users[1];
+					        //$second = $top5Users[1];
+					        break;
+					    case 2:
+					    	$setToUpdate = $setToUpdate . ", TreceMesto = " . $top5Users[2];
+					        //$third = $top5Users[2];
+					        break;
+					    case 3:
+					    	$setToUpdate = $setToUpdate . ", CetvrtoMesto = " . $top5Users[3];
+					        //$fourth = $top5Users[3];
+					        break;
+					    case 4:
+					    	$setToUpdate = $setToUpdate . ", PetoMesto = " . $top5Users[4];
+					        //$fifth = $top5Users[4];
+					        break;
+					} 
+				}
+
 				$queryDayBefore = "UPDATE topik " . 
-				"SET PrvoMesto = " . $top5Users[0] . ", DrugoMesto = " . $top5Users[1] . ", TreceMesto = " . $top5Users[2] . ", CetvrtoMesto = " . $top5Users[3] . ", PetoMesto = " . $top5Users[4] . " " .                                   
+				"SET " . $setToUpdate . " " .                                   
 				"WHERE DatumObjave = '" . $this->dayBefore . "'";
 				
 				// update topic of the day before

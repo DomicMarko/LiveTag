@@ -7,7 +7,8 @@
 	else {
 		header("Location:profil.php");
 		exit;
-	}*/ $_SESSION['userName'] = 'veljaRob'; $korisnik = $_SESSION['userName'];
+	}*/ //$_SESSION['userName'] = 'veljaRob'; 
+	$korisnik = $_SESSION['userName'];
 	require_once 'Konekcija.php';
 	require_once 'config.php';
 	$konekcija = new Konekcija(DB_HOST, DB_NAME, DB_USER, DB_PASS);

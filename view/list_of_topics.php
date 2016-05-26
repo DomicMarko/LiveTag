@@ -84,24 +84,12 @@
         <div class="row">
             <div class="col-lg-12 topicHeader">
                 <h1 class="page-header" id="topic" style="margin-top: 20px;">
-                	Pošaljite topik
+                	Lista topika i pobednika
                 </h1>
             </div>
         </div>
         <!-- /.row -->
 
-        <form enctype="multipart/form-data" method="POST" id="sendTopicForm">
-        
-			Unesite topik:
-			<input type="text" name="inputTopic" id="inputTopic" size="100">
-            
-			<br/>            
-       		<br/>   
-                     
-            <input hidden="true" type="text" name="userID" id="userID" value="<?php echo $_SESSION['userID']?>" />
-            
-			<input type="submit" value="Postavi baner" id="btn">
-		</form>
        
 
         <hr>

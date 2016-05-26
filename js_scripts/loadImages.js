@@ -273,7 +273,7 @@ function loadContent(data, userType) {
 			var h4Element = document.createElement('h4');
 			var aUploadLink = document.createElement('a');
 		
-			aUploadLink.setAttribute('href', 'send_topic.php');
+			aUploadLink.setAttribute('href', '../andjela/sendtopic.php');
 			aUploadLink.setAttribute('target', '_self');
 			aUploadLink.innerHTML = 'Pošaljite topik';
 		
@@ -285,7 +285,7 @@ function loadContent(data, userType) {
 	var h4ElementList = document.createElement('h4');
 	var aUploadLinkList = document.createElement('a');
 		
-	aUploadLinkList.setAttribute('href', '#');
+	aUploadLinkList.setAttribute('href', '../andjela/topics.php');
 	aUploadLinkList.setAttribute('target', '_self');
 	aUploadLinkList.innerHTML = 'Spisak topika i pobednika';
 		

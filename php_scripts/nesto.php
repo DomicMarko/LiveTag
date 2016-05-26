@@ -1,5 +1,5 @@
 <?php
-
+/*
 		// include db connect class
 	require_once ('db_connect.php');
 	
@@ -23,5 +23,15 @@
 
 	//echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
 
-	echo $a;
+	echo $a;*/
+
+	$a  = array();
+
+	$a[0] = 1;
+	$a[1] = 2;
+	$a[2] = 3;
+	$a[3] = null;
+	$a[4] = null;
+
+	echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
 ?>
