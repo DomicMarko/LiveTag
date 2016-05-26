@@ -18,6 +18,7 @@
 			 " AND Objavljen=0";
 	$imaneobjavljen = $konekcija->getRecord($query);
 	
+echo "<a href='../view/index.php'>Nazad</a>";
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

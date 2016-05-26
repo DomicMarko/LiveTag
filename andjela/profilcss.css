@@ -24,6 +24,8 @@
 
 .podeli {
 	float: left;
+	margin-top: 20px;
+	margin-left: 8px;
 }
 
 #desnidiv {
@@ -58,7 +60,7 @@
 }
 
 .picsize {
-	width:250px;
+	width:300px;
 	height:400px;
 	position: relative;
 	/*display: table;
@@ -68,19 +70,24 @@
 .picsize img {
 	width: auto;
 	max-height: 400px;
-	max-width: 250px;
+	max-width: 300px;
+	
 	position: absolute;
-    left: 0;
+    margin: auto;
     top: 0;
-	/*display: block;
-    margin-left: auto;
-    margin-right: auto;*/
+    left: 0;
+    right: 0;
+    bottom: 0;
+	
+	border-radius: 8px;
 }
 
 #malagalerija {
 	clear: left;
 	position: relative;
 	top: 200px;
+	border: 2px solid #4CAF50;
+	border-radius: 10px;
 }
 
 #slika1 {
@@ -90,6 +97,8 @@
 
 #slika1 img {
 	max-height: 180px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
 }
 
 #slika2 {
@@ -109,9 +118,8 @@
 	max-height: 180px;
 }
 
-input[type=submit], input[type=button] {
+input[type=submit], input[type=button], a {
 	background-color: #4CAF50;
-	border: none;
     color: white;
     padding: 5px 10px;
     text-align: center;
@@ -119,4 +127,21 @@ input[type=submit], input[type=button] {
     display: inline-block;
     font-size: 12px;
 	border-radius: 8px;
+	border: 2px solid white;
+}
+input[type=submit]:hover, input[type=button]:hover, a:hover {
+	background-color: white;
+    color: #4CAF50;
+	border: 2px solid #4CAF50;
+}
+
+#gornji {
+	border: 2px solid #4CAF50;
+	border-radius: 10px;
+	height:400px;
+	padding:10px;
+}
+
+font {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
