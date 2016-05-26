@@ -7,6 +7,7 @@
 	
 	$query = "SELECT * FROM topik WHERE Objavljen=2";
 	$teme = $konekcija->getRecordSet($query);
+
 	
 	function sortiranje($item1, $item2) {
 		if ($item1['DatumObjave'] == $item2['DatumObjave']) return 0;
@@ -15,37 +16,38 @@
 	
 	if ($teme != 0)
 		usort($teme, 'sortiranje');
-	
+		
 ?>
 <a href='../view/index.php'>Nazad</a>
 
 <div class="glavni">
 	<?php
 		for ($i=0; $i<count($teme); $i++) {
-			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['PrvoMesto'];
-			$user1 = $konekcija->getRecord($query);
-			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['PrvoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
+			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['PrvoMesto'];
 			$slika1 = $konekcija->getRecord($query);
+			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika1[1];
+			$user1 = $konekcija->getRecord($query);
 			
-			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['DrugoMesto'];
-			$user2 = $konekcija->getRecord($query);
-			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['DrugoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
+			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['DrugoMesto'];
 			$slika2 = $konekcija->getRecord($query);
+			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika2[1];
+			$user2 = $konekcija->getRecord($query);
 			
-			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['TreceMesto'];
-			$user3 = $konekcija->getRecord($query);
-			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['TreceMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
+			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['TreceMesto'];
 			$slika3 = $konekcija->getRecord($query);
+			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika3[1];
+			$user3 = $konekcija->getRecord($query);
 			
-			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['CetvrtoMesto'];
-			$user4 = $konekcija->getRecord($query);
-			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['CetvrtoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
+			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['CetvrtoMesto'];
 			$slika4 = $konekcija->getRecord($query);
+			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika4[1];
+			$user4 = $konekcija->getRecord($query);
 			
-			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['PetoMesto'];
-			$user5 = $konekcija->getRecord($query);
-			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['PetoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
+			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['PetoMesto'];
 			$slika5 = $konekcija->getRecord($query);
+			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika5[1];
+			$user5 = $konekcija->getRecord($query);
+			
 			echo "<div class='jedantopik'>";
 			echo "<h3>" . $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'] . "</h3>";
 				

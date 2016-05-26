@@ -55,7 +55,7 @@
 	$datum = $konekcija->getRecord($queryDatum);
 	
 	$query = "SELECT * FROM glasovi WHERE KorisnikID=" . $korisnikID . " AND SlikaID=" . $pictures[0]['SlikaID'];
-	$imaveclajk = $konekcija->getRecord($query);
+	$imaveclajk = $konekcija->getRecord($query); 
 	
 	echo "<a href='profil.php?userID=" . $userID . "'>Nazad</a>";
 	
