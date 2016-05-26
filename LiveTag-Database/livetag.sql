@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2016 at 04:21 PM
+-- Generation Time: May 26, 2016 at 06:40 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `ZadnjaObjava` date DEFAULT NULL,
   `TipKorisnika` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `AvatarURL` varchar(10000) DEFAULT NULL,
-  `StiglaPoruka` bit(1) DEFAULT NULL,
+  `StiglaPoruka` tinyint(1) DEFAULT NULL,
   `PorukaZaElite` text,
   PRIMARY KEY (`KorisnikID`),
   UNIQUE KEY `KorisnikID_UNIQUE` (`KorisnikID`),
@@ -120,16 +120,16 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 --
 
 INSERT INTO `korisnik` (`KorisnikID`, `Username`, `Password`, `Ime`, `Prezime`, `DatumRodjenja`, `MestoStanovanja`, `Pol`, `Email`, `BrojPoena`, `ZadnjaObjava`, `TipKorisnika`, `AvatarURL`, `StiglaPoruka`, `PorukaZaElite`) VALUES
-(12, 'admin', '$2y$10$938vMKY6rVcGs7YVG2.dJuvQu2pWDqZ7AIUBjJL4vwAGvHAb5Krsu', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, NULL, 'admin', NULL, b'0', NULL),
-(13, 'mod', '$2y$10$3ledFC3yDPXp7YV3r7OxPOdiut1wtW8N3uWDF1ypuBGSSEUAy8O7C', 'moderator', 'moderator', '2016-01-01', 'Zemun', 'Z', 'mod@mod.com', 0, NULL, 'mod', NULL, b'0', NULL),
-(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 328, '2016-05-26', 'elite', 'slike/marko.jpg', b'0', NULL),
-(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 233, '2016-05-26', 'elite', 'slike/rob.jpg', b'0', NULL),
-(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 143, '2016-05-26', 'premium', 'slike/geko.jpg', b'0', NULL),
-(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 115, '2016-05-26', 'premium', 'slike/merkel.jpg', b'0', NULL),
-(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 98, '2016-05-26', 'basic', 'slike/diamond.jpg', b'0', NULL),
-(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 82, '2016-05-26', 'basic', 'slike/sestra.jpg', b'0', NULL),
-(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 54, '2016-05-26', 'basic', 'slike/vicde.JPG', b'0', NULL),
-(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 51, '2016-05-26', 'basic', 'slike/gio.jpg', b'0', NULL);
+(12, 'admin', '$2y$10$938vMKY6rVcGs7YVG2.dJuvQu2pWDqZ7AIUBjJL4vwAGvHAb5Krsu', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, NULL, 'admin', NULL, 0, NULL),
+(13, 'mod', '$2y$10$3ledFC3yDPXp7YV3r7OxPOdiut1wtW8N3uWDF1ypuBGSSEUAy8O7C', 'moderator', 'moderator', '2016-01-01', 'Zemun', 'Z', 'mod@mod.com', 0, NULL, 'mod', NULL, 0, NULL),
+(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 328, '2016-05-26', 'elite', 'slike/marko.jpg', 1, 'nesto'),
+(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 233, '2016-05-26', 'elite', 'slike/rob.jpg', 0, NULL),
+(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 143, '2016-05-26', 'premium', 'slike/geko.jpg', 0, NULL),
+(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 115, '2016-05-26', 'premium', 'slike/merkel.jpg', 0, NULL),
+(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 98, '2016-05-26', 'basic', 'slike/diamond.jpg', 0, NULL),
+(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 82, '2016-05-26', 'basic', 'slike/sestra.jpg', 0, NULL),
+(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 54, '2016-05-26', 'basic', 'slike/vicde.JPG', 0, NULL),
+(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 51, '2016-05-26', 'basic', 'slike/gio.jpg', 0, NULL);
 
 -- --------------------------------------------------------
 

@@ -21,10 +21,8 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/3-col-portfolio.css" rel="stylesheet">
     <link href="../css/modal.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,22 +49,23 @@
           <a class="navbar-brand" href="index.php">LiveTag</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">                    
-                	<?php
-						if(($_SESSION['userType'] != 'guest') && ($_SESSION['userType'] != 'admin')) {
-							echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\">" . $_SESSION['userName'] . "</a></li>"
-								. "<li><a href=\"../genal/logout.php\">Logout</a></li>";
-						} 
-						if($_SESSION['userType'] == 'guest') {
-							echo "<li><a href=\"../genal/logout.php\">Ulogujte se</a></li>";
-						}
-						if($_SESSION['userType'] == 'admin') {
-							echo "<li><a href=\"../gazda/adminpanel.php\">Admin panel</a></li>" . 
-								"<li><a href=\"../gazda/moderator.php\">Moderator panel</a></li>" . 
-								"<li><a href=\"../genal/logout.php\">Logout</a></li>";
-						}
-					?>
-                </ul>
+          <ul class="nav navbar-nav">
+          	<li id="newMessage"></li>                              
+          	<?php
+		   		if(($_SESSION['userType'] != 'guest') && ($_SESSION['userType'] != 'admin')) {
+		  			echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\">" . $_SESSION['userName'] . "</a></li>"
+		  				. "<li><a href=\"../genal/logout.php\">Logout</a></li>";
+		  		} 
+		  		if($_SESSION['userType'] == 'guest') {
+		  			echo "<li><a href=\"../genal/logout.php\">Ulogujte se</a></li>";
+		  		}
+		  		if($_SESSION['userType'] == 'admin') {
+		  			echo "<li><a href=\"../gazda/adminpanel.php\">Admin panel</a></li>" . 
+		  				"<li><a href=\"../gazda/moderator.php\">Moderator panel</a></li>" . 
+		  				"<li><a href=\"../genal/logout.php\">Logout</a></li>";
+		  			}
+		  	?>                    
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -168,13 +167,6 @@
 <script src="../js_scripts/jquery.js"></script>
 <script src="../js_scripts/bootstrap.min.js"></script>
 <script src="../js_scripts/loadImages.js" type="text/javascript"></script>
-<script src="../js/modernizr.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../js_scripts/retina-1.1.0.js"></script>
-<!--<script src="../js_scripts/jquery.hoverdir.js"></script>-->
-<!--<script src="../js_scripts/jquery.hoverex.min.js"></script>-->
-<!--<script src="../js_scripts/jquery.prettyPhoto.js"></script>-->
-<!--<script src="../js_scripts/jquery.isotope.min.js"></script>-->
 
 </body>
 
