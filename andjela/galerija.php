@@ -47,7 +47,7 @@
 	$userdata = $konekcija->getRecord($query);
 	
 	// slike korisnika na cijem smo profilu
-	$query = "SELECT * FROM slika_post WHERE KorisnikID=$userdata[0]";
+	$query = "SELECT s.SlikaID, s.SlikaURL, s.KorisnikID, s.TopikID, s.BrojGlasova FROM slika_post s, topik t WHERE s.KorisnikID=$userdata[0] AND s.TopikID = t.TopikID ORDER BY t.DatumObjave DESC";
 	$pictures = $konekcija->getRecordSet($query);
 	
 	// za proveru za lajkovanje danasnje slike
