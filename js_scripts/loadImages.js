@@ -235,6 +235,8 @@ function loadContent(data, userType) {
 	var topicID = objParsed.topicID;
 	var uploadImg = objParsed.uploadImg;
 	var sendTopic = objParsed.sendTopic;
+	var isMessage = objParsed.isMessage;
+	var message = objParsed.message;
 	var guest, admin;
 	var i, j, k;
 	
