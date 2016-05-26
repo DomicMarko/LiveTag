@@ -19,11 +19,10 @@
 ?>
 
 <div class="glavni">
-	<ul>
 	<?php
 		for ($i=0; $i<count($teme); $i++) {
 			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $teme[$i]['PrvoMesto'];
-			$user1 = $konekcija->getRecord($query); echo $user1[0] . "blabla";
+			$user1 = $konekcija->getRecord($query);
 			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['PrvoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
 			$slika1 = $konekcija->getRecord($query);
 			
@@ -46,8 +45,8 @@
 			$user5 = $konekcija->getRecord($query);
 			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['PetoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
 			$slika5 = $konekcija->getRecord($query);
-			echo "<li>";
-			echo $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'];
+			echo "<div class='jedantopik'>";
+			echo "<h4>" . $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'] . "</h4>";
 				
 				echo "<table>";
 				echo "<tr>";
@@ -81,9 +80,8 @@
 					}
 				echo "</tr>";
 				echo "</table>";
-			echo "</li>";
+			echo "</div>";
 		}
 
-	?>	
-	</ul>
+	?>
 </div>

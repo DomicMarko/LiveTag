@@ -1,14 +1,9 @@
 <link rel="stylesheet" type="text/css" href="sendtopiccss.css">
 <?php
 	session_start();
-	/*if($_SESSION['userName']){
-		$korisnik = $_SESSION['userName'];
-	}
-	else {
-		header("Location:profil.php");
-		exit;
-	}*/ //$_SESSION['userName'] = 'veljaRob'; 
+	
 	$korisnik = $_SESSION['userName'];
+	
 	require_once 'Konekcija.php';
 	require_once 'config.php';
 	$konekcija = new Konekcija(DB_HOST, DB_NAME, DB_USER, DB_PASS);
@@ -29,7 +24,7 @@
 	<div id="glavni">
 		<h4>Unesite topik koji zelite da bude objavljen (max. 70 karaktera):</h4>
 		<input type="text" size="70" name="topik"></br></br>
-		<input type="submit" value="Posalji topik" name="dugme">
+		<input id='btn' type="submit" value="Posalji topik" name="dugme">
 		
 		<?php
 			if(array_key_exists('dugme',$_POST)) {
