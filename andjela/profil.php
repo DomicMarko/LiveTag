@@ -23,7 +23,7 @@
 	$konekcija = new Konekcija(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 	
 	$query = "SELECT * FROM korisnik WHERE KorisnikID = " . $userID;
-	$userdata = $konekcija->getRecord($query);	
+	$userdata = $konekcija->getRecord($query);
 
 	$query = "SELECT * FROM slika_post WHERE KorisnikID=$userdata[0]";
 	$pictures = $konekcija->getRecordSet($query);
@@ -197,10 +197,10 @@
 					echo "<div class='picsize'><img src='" . $target . "'></div>";
 					header('Location: profil.php?userID=' . $userID);
 				}
-				else if ($userdata[11] == NULL) {
+				else if ($userdata[12] == NULL) {
 					echo "<div class='picsize'><img src='slike/default_user.png'></div>";
 				}
-				else echo "<div class='picsize'><img src='". $userdata[11] . "'></div>";
+				else echo "<div class='picsize'><img src='". $userdata[12] . "'></div>";
 			?>
 			</br></br>
 			<?php
