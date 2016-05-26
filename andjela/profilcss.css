@@ -1,6 +1,14 @@
 #sve, #divusername {
 	display: table;
     margin: 0 auto;
+	margin-top: 20px;
+}
+
+#gornji {
+	border: 2px solid #00b3fe;
+	border-radius: 10px;
+	height:400px;
+	/*padding:10px;*/
 }
 
 .divprofilna {
@@ -24,7 +32,7 @@
 
 .podeli {
 	float: left;
-	margin-top: 20px;
+	margin-top: 55px;
 	margin-left: 8px;
 }
 
@@ -69,7 +77,7 @@
 
 .picsize img {
 	width: auto;
-	max-height: 400px;
+	max-height: 380px;
 	max-width: 300px;
 	
 	position: absolute;
@@ -77,6 +85,7 @@
     top: 0;
     left: 0;
     bottom: 0;
+	right: 0;
 	
 	border-radius: 8px;
 }
@@ -85,7 +94,7 @@
 	clear: left;
 	position: relative;
 	top: 200px;
-	border: 2px solid #4CAF50;
+	border: 2px solid #00b3fe;
 	border-radius: 10px;
 }
 
@@ -117,8 +126,8 @@
 	max-height: 180px;
 }
 
-input[type=submit], input[type=button], a {
-	background-color: #4CAF50;
+input[type=submit], input[type=button] {
+	background-color: #00b3fe;
     color: white;
     padding: 5px 10px;
     text-align: center;
@@ -128,18 +137,25 @@ input[type=submit], input[type=button], a {
 	border-radius: 8px;
 	border: 2px solid white;
 }
-input[type=submit]:hover, input[type=button]:hover, a:hover {
-	background-color: white;
-    color: #4CAF50;
-	border: 2px solid #4CAF50;
+
+#link {
+	background-color: #00b3fe;
+    color: white;
+	padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+	border-radius: 8px;
+	border: 2px solid white;
 }
 
-#gornji {
-	border: 2px solid #4CAF50;
-	border-radius: 10px;
-	height:400px;
-	padding:10px;
+input[type=submit]:hover, input[type=button]:hover, #link:hover {
+	background-color: white;
+    color: #00b3fe;
+	border: 2px solid #00b3fe;
 }
+
 
 font {
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/

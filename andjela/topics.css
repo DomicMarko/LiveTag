@@ -17,15 +17,16 @@
 }
 
 .jedantopik {
-	border: 2px solid #4CAF50;
+	border: 2px solid #00b3fe;
 	border-radius: 10px;
 	margin-top:20px;
+	padding-bottom: 10px;
 }
 
-a {
+#nazad {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
-	background-color: #4CAF50;
+	background-color: #00b3fe;
 	border: 2px solid white;
     color: white;
     padding: 10px 25px;
@@ -36,14 +37,14 @@ a {
 	border-radius: 8px;
 }
 
-a:hover{
+#nazad:hover{
 	background-color: white;
-    color: #4CAF50;
-	border: 2px solid #4CAF50;
+    color: #00b3fe;
+	border: 2px solid #00b3fe;
 }
 
 h3 {
-	color: #4CAF50;
+	color: #00b3fe;
 	text-align: center;
 	letter-spacing: 3px;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
