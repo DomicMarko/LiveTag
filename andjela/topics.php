@@ -17,6 +17,7 @@
 		usort($teme, 'sortiranje');
 	
 ?>
+<a href='../view/index.php'>Nazad</a>
 
 <div class="glavni">
 	<?php
@@ -46,36 +47,36 @@
 			$query = "SELECT SlikaURL FROM slika_post WHERE KorisnikID=" . $teme[$i]['PetoMesto'] . " AND TopikID=" . $teme[$i]['TopikID'];
 			$slika5 = $konekcija->getRecord($query);
 			echo "<div class='jedantopik'>";
-			echo "<h4>" . $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'] . "</h4>";
+			echo "<h3>" . $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'] . "</h3>";
 				
 				echo "<table>";
 				echo "<tr>";
 					if ($user1 != 0) {
-						echo "<td class='left'>1. " . $user1[0] . " " . $user1[1] . ", " . $user1[2] . " poena</td>";
+						echo "<td class='left'><font class='rednibroj'>1.</font> <font class='podaci'>" . $user1[0] . " " . $user1[1] . ", " . $user1[2] . " poena</font></td>";
 						echo "<td class='right'><img src='" . $slika1[0] . "'></td>";
 					}
 				echo "</tr>";
 				echo "<tr>";
 					if ($user2 != 0) {
-						echo "<td class='left'>2. " . $user2[0] . " " . $user2[1] . ", " . $user2[2] . " poena</td>";
+						echo "<td class='left'><font class='rednibroj'>2.</font> <font class='podaci'>" . $user2[0] . " " . $user2[1] . ", " . $user2[2] . " poena</font></td>";
 						echo "<td class='right'><img src='" . $slika2[0] . "'></td>";
 					}
 				echo "</tr>";
 				echo "<tr>";
 					if ($user3 != 0) {
-						echo "<td class='left'>3. " . $user3[0] . " " . $user3[1] . ", " . $user3[2] . " poena</td>";
+						echo "<td class='left'><font class='rednibroj'>3.</font> <font class='podaci'>" . $user3[0] . " " . $user3[1] . ", " . $user3[2] . " poena</font></td>";
 						echo "<td class='right'><img src='" . $slika3[0] . "'></td>";
 					}
 				echo "</tr>";
 				echo "<tr>";
 					if ($user4 != 0) {				
-						echo "<td class='left'>4. " . $user4[0] . " " . $user4[1] . ", " . $user4[2] . " poena</td>";
+						echo "<td class='left'><font class='rednibroj'>4.</font> <font class='podaci'>" . $user4[0] . " " . $user4[1] . ", " . $user4[2] . " poena</font></td>";
 						echo "<td class='right'><img src='" . $slika4[0] . "'></td>";
 					}
 				echo "</tr>";
 				echo "<tr>";
 					if ($user5 != 0) {
-						echo "<td class='left'>5. " . $user5[0] . " " . $user5[1] . ", " . $user5[2] . " poena</td>";
+						echo "<td class='left'><font class='rednibroj'>5.</font> <font class='podaci'>" . $user5[0] . " " . $user5[1] . ", " . $user5[2] . " poena</font></td>";
 						echo "<td class='right'><img src='" . $slika5[0] . "'></td>";
 					}
 				echo "</tr>";

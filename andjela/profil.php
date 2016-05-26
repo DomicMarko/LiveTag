@@ -28,6 +28,64 @@
 	$query = "SELECT * FROM slika_post WHERE KorisnikID=$userdata[0]";
 	$pictures = $konekcija->getRecordSet($query);
 	
+	if (isset($_POST['action'])) {
+		// Promena lozinke
+		if ($_POST['action']=='Potvrdi') {
+			$pass = $_POST['pass'];
+			$pass2 = $_POST['pass2'];
+			if ($pass != $pass2) {
+				echo "Niste potvrdili lozinku! Pokusajte ponovo.";
+			}
+			else {
+				$query = "UPDATE korisnik SET Password='" . $pass . "' WHERE Username='" . $userdata[1] . "'";
+				$konekcija->doQuery($query);
+			}
+			header('Location: profil.php?userID=' . $userID);
+		}
+
+		// Izmena podataka
+		if ($_POST['action']=='Potvrdi ime') {
+			$ime = $_POST['novoime'];
+			$query = "UPDATE korisnik SET Ime='" . $ime . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+		if ($_POST['action']=='Potvrdi prezime') {
+			$prezime = $_POST['novoprezime'];
+			$query = "UPDATE korisnik SET Prezime='" . $prezime . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+		if ($_POST['action']=='Potvrdi datum rodjenja') {
+			$datum = date('Y-m-d', strtotime($_POST['novdatum']));
+			$query = "UPDATE korisnik SET DatumRodjenja='" . $datum . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+		if ($_POST['action']=='Potvrdi mesto stanovanja') {
+			$mesto = $_POST['novomesto'];
+			$query = "UPDATE korisnik SET MestoStanovanja='" . $mesto . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+		if ($_POST['action']=='Potvrdi pol') {
+			$pol = $_POST['novpol'];
+			$query = "UPDATE korisnik SET Pol='" . $pol . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+		if ($_POST['action']=='Potvrdi email') {
+			$mail = $_POST['novemail'];
+			$query = "UPDATE korisnik SET Email='" . $mail . "' WHERE Username='" . $userdata[1] . "'";
+			$konekcija->doQuery($query);
+			header('Location: profil.php?userID=' . $userID);
+		}
+	}
+
+	function itsme($person) {
+		if ($_SESSION['userName'] == $person) return true;
+		return false;
+	}
 ?>
 
 <?php
@@ -84,7 +142,7 @@
 				}
 				else echo "<div class='picsize'><img src='". $userdata[11] . "'></div>";
 			?>
-			</br><div id="divusername"><?php echo $userdata[1]; ?> </div></br>
+			</br></br>
 			<?php
 				if (itsme($userdata[1])) {
 					echo "<div id='menjajprofilnu'>Promeni profilnu sliku:</br>";
@@ -94,11 +152,12 @@
 		</div>
 		<div class="divpodaci">
 			<div class="podeli">
+				<font>
 				<table cellpadding="5">
+					<tr><td><b>Username:</b></td><td> <b><?php echo $userdata[1]; ?></b></td><td></td></tr>
 					<tr><td><b>Status:</b></td><td> <b><?php echo $userdata[10]; ?></b></td><td></td></tr>
 					<tr><td>Sakupljen broj poena:</td><td> <?php echo $userdata[9]; ?></td><td></td></tr>
-					<tr><td colspan="3"><b>Osnovni podaci:</b></td></tr>
-				
+					
 					<tr><td>Ime:</td><td> <?php echo $userdata[3]; ?></td>
 						<td><?php if (itsme($userdata[1])) {?> <input type='button' onclick="lozinka('skrivenoime')" value='Promeni ime'> <?php } ?></td></tr>
 					<tr><td>Prezime:</td><td> <?php echo $userdata[4]; ?></td>
@@ -112,6 +171,7 @@
 					<tr><td>Email:</td><td> <?php echo $userdata[8]; ?></td>
 						<td><?php if (itsme($userdata[1])) {?> <input type='button' onclick="lozinka('skrivenmail')" value='Promeni email'> <?php } ?></td></tr>
 				</table>
+				</font>
 			</div>
 		
 			<div id="desnidiv">
@@ -167,7 +227,7 @@
 	</div>
 	
 	<div id="malagalerija">
-	<?php 
+	<?php
 		if ($pictures == false)
 			echo "Korisnik nema nijednu objavljenu sliku.";
 		else {
@@ -191,66 +251,3 @@
 </div>
 <?php echo "<input type='hidden' value='" . $userID ."' name='userID'>"; ?>
 </form>
-
-<?php
-	if (isset($_POST['action'])) {
-		// Promena lozinke
-		if ($_POST['action']=='Potvrdi') {
-			$pass = $_POST['pass'];
-			$pass2 = $_POST['pass2'];
-			if ($pass != $pass2) {
-				echo "Niste potvrdili lozinku! Pokusajte ponovo.";
-			}
-			else {
-				$query = "UPDATE korisnik SET Password='" . $pass . "' WHERE Username='" . $userdata[1] . "'";
-				$konekcija->doQuery($query);
-			}
-			header('Location: profil.php?userID=' . $userID);
-		}
-
-		// Izmena podataka
-		if ($_POST['action']=='Potvrdi ime') {
-			$ime = $_POST['novoime'];
-			$query = "UPDATE korisnik SET Ime='" . $ime . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-		if ($_POST['action']=='Potvrdi prezime') {
-			$prezime = $_POST['novoprezime'];
-			$query = "UPDATE korisnik SET Prezime='" . $prezime . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-		if ($_POST['action']=='Potvrdi datum rodjenja') {
-			$datum = date('Y-m-d', strtotime($_POST['novdatum']));
-			$query = "UPDATE korisnik SET DatumRodjenja='" . $datum . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-		if ($_POST['action']=='Potvrdi mesto stanovanja') {
-			$mesto = $_POST['novomesto'];
-			$query = "UPDATE korisnik SET MestoStanovanja='" . $mesto . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-		if ($_POST['action']=='Potvrdi pol') {
-			$pol = $_POST['novpol'];
-			$query = "UPDATE korisnik SET Pol='" . $pol . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-		if ($_POST['action']=='Potvrdi email') {
-			$mail = $_POST['novemail'];
-			$query = "UPDATE korisnik SET Email='" . $mail . "' WHERE Username='" . $userdata[1] . "'";
-			$konekcija->doQuery($query);
-			header('Location: profil.php?userID=' . $userID);
-		}
-	}
-?>
-
-<?php
-	function itsme($person) {
-		if ($_SESSION['userName'] == $person) return true;
-		return false;
-	}
-?>
