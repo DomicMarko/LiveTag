@@ -45,9 +45,7 @@
 			return $response;
 		}
 		
-		private function updateTopics() {
-			
-			$top5Users = $this->getTop5MostLikedUsers();
+		private function updateTopics($top5Users) {						
 
 			if($top5Users != 0) {
 
@@ -104,9 +102,75 @@
 							
 		}
 		
+		private function updateUsersAfterUpdateTopic($top5Users) {
+			
+			if($top5Users != 0) {
+				
+				
+				$imgIDs = "(";
+
+				for($i = 0; $i < count($top5Users); $i++) {
+					
+					if($i == 0) $imgIDs = $imgIDs . $top5Users[$i];
+					else $imgIDs = $imgIDs . ", " . $top5Users[$i];
+				}
+				
+				$imgIDs = $imgIDs . ")";				
+				
+				
+				$queryTop5Users = "SELECT s.KorisnikID, k.BrojPoena " .
+					"FROM slika_post s, korisnik k " . 
+					"WHERE s.SlikaID IN " . $imgIDs . " " .
+					"AND s.KorisnikID = k.KorisnikID " . 
+					"ORDER BY s.BrojGlasova DESC";			
+				
+				// get top 5 list users
+				$resultTop5 = mysqli_query($this->db, $queryTop5Users) or die(mysqli_error());				
+				
+				$response = array();
+				
+				if (mysqli_num_rows($resultTop5) > 0) {
+					
+					while ($row = mysqli_fetch_array($resultTop5)) {
+						
+						// temp array
+						$res = array();
+						$res["userID"] = $row["KorisnikID"];
+						$res["points"] = $row["BrojPoena"];					
+				
+						// push single row into final response array
+						array_push($response, $res);
+					}
+				}
+				
+				$points = 20;
+				
+				for($i = 0; $i < count($response); $i++) {
+					
+					$response[$i]["points"] += $points;
+					$points -= 2;
+					
+					$userType = "";
+					
+					if(($response[$i]["points"] >= 0) && ($response[$i]["points"] < 100)) $userType = "basic";
+					if(($response[$i]["points"] >= 100) && ($response[$i]["points"] < 200)) $userType = "premium";
+					if($response[$i]["points"] >= 200) $userType = "elite";
+					
+					$queryUpdateUser = "UPDATE korisnik " . 
+						"SET BrojPoena = " . $response[$i]["points"] . ", TipKorisnika = '" . $userType . "' " .
+						"WHERE KorisnikID = " . $response[$i]["userID"];																
+						
+					$resultUpdateUser = mysqli_query($this->db, $queryUpdateUser) or die(mysqli_error());					
+					
+				}
+			}			
+		}
+		
 		public function updateService() {
 			
-			$this->updateTopics();
+			$top5 = $this->getTop5MostLikedUsers();
+			$this->updateTopics($top5);
+			$this->updateUsersAfterUpdateTopic($top5);
 		}
 		
 	}

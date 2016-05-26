@@ -257,28 +257,28 @@ function loadContent(data, userType) {
 	if(!guest && !admin) {
 		if (uploadImg) {
 		
-			var h4Element = document.createElement('h4');
-			var aUploadLink = document.createElement('a');
+			var h4ElementUploadImg = document.createElement('h4');
+			var aUploadLinkUploadImg = document.createElement('a');
 		
-			aUploadLink.setAttribute('href', 'upload_img.php');
-			aUploadLink.setAttribute('target', '_self');
-			aUploadLink.innerHTML = 'Objavite sliku';
+			aUploadLinkUploadImg.setAttribute('href', 'upload_img.php');
+			aUploadLinkUploadImg.setAttribute('target', '_self');
+			aUploadLinkUploadImg.innerHTML = 'Objavite sliku';
 		
-			h4Element.appendChild(aUploadLink);
-			document.getElementById('uploadLink').appendChild(h4Element);	
+			h4ElementUploadImg.appendChild(aUploadLinkUploadImg);
+			document.getElementById('uploadLink').appendChild(h4ElementUploadImg);	
 		}	
 		
 		if (sendTopic) {
 			
-			var h4Element = document.createElement('h4');
-			var aUploadLink = document.createElement('a');
+			var h4ElementSendTopic = document.createElement('h4');
+			var aUploadLinkSendTopic = document.createElement('a');
 		
-			aUploadLink.setAttribute('href', '../andjela/sendtopic.php');
-			aUploadLink.setAttribute('target', '_self');
-			aUploadLink.innerHTML = 'Pošaljite topik';
+			aUploadLinkSendTopic.setAttribute('href', '../andjela/sendtopic.php');
+			aUploadLinkSendTopic.setAttribute('target', '_self');
+			aUploadLinkSendTopic.innerHTML = 'Pošaljite topik';
 		
-			h4Element.appendChild(aUploadLink);
-			document.getElementById('uploadLink').appendChild(h4Element);	
+			h4ElementSendTopic.appendChild(aUploadLinkSendTopic);
+			document.getElementById('uploadLink').appendChild(h4ElementSendTopic);	
 		}
 	}
 	

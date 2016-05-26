@@ -1,5 +1,5 @@
 <?php
-/*
+
 		// include db connect class
 	require_once ('db_connect.php');
 	
@@ -17,14 +17,14 @@
 
 
 	$pronounce = new Pronounce($currentDate, $dayBefore, $db);
-	$a = $pronounce->updateTopics();
+	$a = $pronounce->updateService();
 
 	echo $currentDate . "<br><br>" . $dayBefore . "<br><br>"; 
 
 	//echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
 
-	echo $a;*/
-
+	//echo $a;
+/*
 	$a  = array();
 
 	$a[0] = 1;
@@ -33,5 +33,5 @@
 	$a[3] = null;
 	$a[4] = null;
 
-	echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];
+	echo $a[0] . " - " . $a[1] . " - " . $a[2] . " - " . $a[3] . " - " . $a[4];*/
 ?>

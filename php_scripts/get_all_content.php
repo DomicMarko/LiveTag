@@ -20,10 +20,10 @@
 	$response = array();
 	
 	// get loged in user id
-	$logedInUserID = '14';//$_POST['logedInUserID'];
+	$logedInUserID = $_POST['logedInUserID'];
 
 	// get loged in user type
-	$logedInUserType = 'elite';//$_POST['logedInUserType'];
+	$logedInUserType = $_POST['logedInUserType'];
 	
 	// connecting to db
 	$dbb = new DB_CONNECT();
