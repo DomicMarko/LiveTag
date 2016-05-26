@@ -14,4 +14,6 @@
 							VALUES(NULL, '$name', CURDATE())") or die(mysql_error());
 				header("Location: moderator.php?Message1=" . urlencode('Uspesno ste uneli topik.'));
 			}
+			//pimpeklija
 ?>
+
