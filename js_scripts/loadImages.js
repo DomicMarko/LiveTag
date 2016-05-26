@@ -146,9 +146,7 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 			
 		}	
 	}
-	
-	
-	
+			
 	if(adminCheck) {
 		
 		var aSmallDelete = document.createElement('div');
