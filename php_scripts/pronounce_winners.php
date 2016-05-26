@@ -166,11 +166,60 @@
 			}			
 		}
 		
+		private function takePoints() {
+			
+			$currentDate = date("Y-m-d");	
+			$weekAgoTemp = strtotime("-7 day", strtotime($currentDate));
+			$weekAgo = date("Y-m-d", $weekAgoTemp);
+			
+			$queryLazyUsers = "SELECT KorisnikID, BrojPoena " . 
+				"FROM korisnik " . 
+				"WHERE ZadnjaObjava < '" . $weekAgo . "'";
+
+			$resultLazyUsers = mysqli_query($this->db, $queryLazyUsers) or die(mysqli_error());
+			
+			$response = array();
+			
+			if (mysqli_num_rows($resultLazyUsers) > 0) {
+					
+				while ($row = mysqli_fetch_array($resultLazyUsers)) {
+						
+					// temp array
+					$res = array();
+					$res["userID"] = $row["KorisnikID"];
+					$res["points"] = $row["BrojPoena"];					
+				
+					// push single row into final response array
+					array_push($response, $res);
+				}
+			}
+			
+			for($i = 0; $i < count($response); $i++) {
+				
+				$response[$i]["points"] -= 2;
+				
+				$userType = "";
+					
+				if(($response[$i]["points"] >= 0) && ($response[$i]["points"] < 100)) $userType = "basic";
+				if(($response[$i]["points"] >= 100) && ($response[$i]["points"] < 200)) $userType = "premium";
+				if($response[$i]["points"] >= 200) $userType = "elite";
+				
+				$queryUpdateUser = "UPDATE korisnik " . 
+					"SET BrojPoena = " . $response[$i]["points"] . ", TipKorisnika = '" . $userType . "' " .
+					"WHERE KorisnikID = " . $response[$i]["userID"];																
+						
+				$resultUpdateUser = mysqli_query($this->db, $queryUpdateUser) or die(mysqli_error());
+				
+			}
+			
+		}
+		
 		public function updateService() {
 			
 			$top5 = $this->getTop5MostLikedUsers();
 			$this->updateTopics($top5);
 			$this->updateUsersAfterUpdateTopic($top5);
+			$this->takePoints();
 		}
 		
 	}

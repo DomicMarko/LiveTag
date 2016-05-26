@@ -99,7 +99,7 @@
 			"WHERE s.KorisnikID = k.KorisnikID " .
 			"AND s.TopikID = " . $topikID . " " .
 			"AND k.TipKorisnika IN ('elite', 'premium') " .
-			"ORDER BY s.BrojGlasova DESC";
+			"ORDER BY s.BrojGlasova DESC, k.BrojPoena DESC";
 	
 	
 		$querySmall = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
@@ -113,7 +113,7 @@
 			"WHERE s.KorisnikID = k.KorisnikID " .
 			"AND s.TopikID = " . $topikID . " " .
 			"AND k.TipKorisnika IN ('basic') " .
-			"ORDER BY s.BrojGlasova DESC";
+			"ORDER BY s.BrojGlasova DESC, k.BrojPoena DESC";
 			
 					
 		$queryUploadImg = "SELECT * " . 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2016 at 08:40 PM
+-- Generation Time: May 26, 2016 at 04:21 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -57,7 +57,36 @@ INSERT INTO `glasovi` (`KorisnikID`, `SlikaID`) VALUES
 (14, 43),
 (21, 43),
 (14, 44),
-(14, 49);
+(14, 49),
+(15, 53),
+(16, 53),
+(17, 53),
+(15, 54),
+(16, 54),
+(15, 55),
+(15, 60),
+(16, 60),
+(18, 60),
+(19, 60),
+(20, 60),
+(14, 61),
+(15, 61),
+(18, 61),
+(19, 61),
+(20, 61),
+(14, 62),
+(15, 62),
+(19, 62),
+(20, 62),
+(16, 63),
+(20, 63),
+(14, 64),
+(16, 64),
+(19, 64),
+(16, 65),
+(20, 65),
+(20, 67),
+(16, 68);
 
 -- --------------------------------------------------------
 
@@ -76,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `Pol` char(1) DEFAULT NULL,
   `Email` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `BrojPoena` int(11) DEFAULT NULL,
+  `ZadnjaObjava` date DEFAULT NULL,
   `TipKorisnika` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `AvatarURL` varchar(10000) DEFAULT NULL,
   `StiglaPoruka` bit(1) DEFAULT NULL,
@@ -89,17 +119,17 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 -- Dumping data for table `korisnik`
 --
 
-INSERT INTO `korisnik` (`KorisnikID`, `Username`, `Password`, `Ime`, `Prezime`, `DatumRodjenja`, `MestoStanovanja`, `Pol`, `Email`, `BrojPoena`, `TipKorisnika`, `AvatarURL`, `StiglaPoruka`, `PorukaZaElite`) VALUES
-(12, 'admin', '$2y$10$938vMKY6rVcGs7YVG2.dJuvQu2pWDqZ7AIUBjJL4vwAGvHAb5Krsu', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, 'admin', NULL, b'0', NULL),
-(13, 'mod', '$2y$10$3ledFC3yDPXp7YV3r7OxPOdiut1wtW8N3uWDF1ypuBGSSEUAy8O7C', 'moderator', 'moderator', '2016-01-01', 'Zemun', 'Z', 'mod@mod.com', 0, 'mod', NULL, b'0', NULL),
-(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 268, 'elite', 'slike/marko.jpg', b'0', NULL),
-(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 210, 'premium', 'slike/rob.jpg', b'0', NULL),
-(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 80, 'basic', 'slike/geko.jpg', b'0', NULL),
-(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 61, 'basic', 'slike/merkel.jpg', b'0', NULL),
-(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 98, 'basic', 'slike/diamond.jpg', b'0', NULL),
-(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 82, 'basic', 'slike/sestra.jpg', b'0', NULL),
-(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 58, 'basic', 'slike/vicde.JPG', b'0', NULL),
-(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 55, 'basic', NULL, b'0', NULL);
+INSERT INTO `korisnik` (`KorisnikID`, `Username`, `Password`, `Ime`, `Prezime`, `DatumRodjenja`, `MestoStanovanja`, `Pol`, `Email`, `BrojPoena`, `ZadnjaObjava`, `TipKorisnika`, `AvatarURL`, `StiglaPoruka`, `PorukaZaElite`) VALUES
+(12, 'admin', '$2y$10$938vMKY6rVcGs7YVG2.dJuvQu2pWDqZ7AIUBjJL4vwAGvHAb5Krsu', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, NULL, 'admin', NULL, b'0', NULL),
+(13, 'mod', '$2y$10$3ledFC3yDPXp7YV3r7OxPOdiut1wtW8N3uWDF1ypuBGSSEUAy8O7C', 'moderator', 'moderator', '2016-01-01', 'Zemun', 'Z', 'mod@mod.com', 0, NULL, 'mod', NULL, b'0', NULL),
+(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 328, '2016-05-26', 'elite', 'slike/marko.jpg', b'0', NULL),
+(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 233, '2016-05-26', 'elite', 'slike/rob.jpg', b'0', NULL),
+(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 143, '2016-05-26', 'premium', 'slike/geko.jpg', b'0', NULL),
+(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 115, '2016-05-26', 'premium', 'slike/merkel.jpg', b'0', NULL),
+(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 98, '2016-05-26', 'basic', 'slike/diamond.jpg', b'0', NULL),
+(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 82, '2016-05-26', 'basic', 'slike/sestra.jpg', b'0', NULL),
+(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 54, '2016-05-26', 'basic', 'slike/vicde.JPG', b'0', NULL),
+(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 51, '2016-05-26', 'basic', 'slike/gio.jpg', b'0', NULL);
 
 -- --------------------------------------------------------
 
@@ -117,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `slika_post` (
   UNIQUE KEY `SlikaID_UNIQUE` (`SlikaID`),
   KEY `Vlasnik_idx` (`KorisnikID`),
   KEY `TopikSlike_idx` (`TopikID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
 
 --
 -- Dumping data for table `slika_post`
@@ -131,7 +161,19 @@ INSERT INTO `slika_post` (`SlikaID`, `SlikaURL`, `KorisnikID`, `TopikID`, `BrojG
 (43, '../slike_posts/1-20-vicde.jpg', 20, 1, 2),
 (44, '../slike_posts/1-21-ognjanov.jpg', 21, 1, 1),
 (49, '../slike_posts/1-15-velja.jpg', 15, 1, 1),
-(50, '../slike_posts/1-14-marko.jpg', 14, 1, 0);
+(50, '../slike_posts/1-14-marko.jpg', 14, 1, 0),
+(53, '../slike_posts/2-14-marko2.jpg', 14, 2, 3),
+(54, '../slike_posts/2-17-andjela2.jpg', 17, 2, 2),
+(55, '../slike_posts/2-16-genal2.jpg', 16, 2, 1),
+(56, '../slike_posts/2-15-velja2.jpg', 15, 2, 0),
+(60, '../slike_posts/3-14-marko3.jpg', 14, 3, 4),
+(61, '../slike_posts/3-17-andjela3.jpg', 17, 3, 5),
+(62, '../slike_posts/3-16-genal3.jpg', 16, 3, 4),
+(63, '../slike_posts/3-15-velja3.jpg', 15, 3, 2),
+(64, '../slike_posts/3-18-Marija3.jpg', 18, 3, 3),
+(65, '../slike_posts/3-19-domicka3.jpg', 19, 3, 2),
+(67, '../slike_posts/3-21-ognjanov3.jpg', 21, 3, 1),
+(68, '../slike_posts/3-20-vicde3.jpg', 20, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `topik` (
   KEY `TreceMesto_idx` (`TreceMesto`),
   KEY `CetvrtoMesto_idx` (`CetvrtoMesto`),
   KEY `PetoMesto_idx` (`PetoMesto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `topik`
@@ -166,7 +208,8 @@ CREATE TABLE IF NOT EXISTS `topik` (
 
 INSERT INTO `topik` (`TopikID`, `Naziv`, `DatumObjave`, `Objavljen`, `PrvoMesto`, `DrugoMesto`, `TreceMesto`, `CetvrtoMesto`, `PetoMesto`, `KorisnikID`) VALUES
 (1, 'TopikTest', '2016-05-24', 2, 41, 39, 40, 42, 43, 13),
-(2, 'TopikTest2', '2016-05-25', 1, NULL, NULL, NULL, NULL, NULL, 13);
+(2, 'TopikTest2', '2016-05-25', 2, 53, 54, 55, 56, NULL, 13),
+(3, 'TopikTest3', '2016-05-26', 1, NULL, NULL, NULL, NULL, NULL, 13);
 
 -- --------------------------------------------------------
 
@@ -180,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `zahtev` (
   `KorisnikID` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`ZahtevID`),
   KEY `Korisnik_idx` (`KorisnikID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Constraints for dumped tables
