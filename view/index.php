@@ -13,12 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <script src="../js_scripts/jquery.js"></script>
-    <script src="../js_scripts/bootstrap.min.js"></script>
-    <script src="../js_scripts/loadImages.js" type="text/javascript"></script>
-<!--    <script src="../js_scripts/modalForVotes.js" type="text/javascript"></script>-->
+    <meta name="author" content="">    
 
     <title>LiveTag - Home</title>
 
@@ -28,6 +23,8 @@
     <!-- Custom CSS -->
     <link href="../css/3-col-portfolio.css" rel="stylesheet">
     <link href="../css/modal.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,22 +37,21 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php">LiveTag</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">                    
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">LiveTag</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">                    
                 	<?php
 						if(($_SESSION['userType'] != 'guest') && ($_SESSION['userType'] != 'admin')) {
 							echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\">" . $_SESSION['userName'] . "</a></li>"
@@ -71,11 +67,12 @@
 						}
 					?>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	
+    
 
     <!-- Page Content -->
     <div class="container">
@@ -167,6 +164,17 @@
 
 <div hidden="true" id="hiddenInfoUserID" data-value="<?php echo $_SESSION['userID']?>"></div>
 <div hidden="true" id="hiddenInfoUserType" data-value="<?php echo $_SESSION['userType']?>"></div>
+
+<script src="../js_scripts/jquery.js"></script>
+<script src="../js_scripts/bootstrap.min.js"></script>
+<script src="../js_scripts/loadImages.js" type="text/javascript"></script>
+<script src="../js/modernizr.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../js_scripts/retina-1.1.0.js"></script>
+<!--<script src="../js_scripts/jquery.hoverdir.js"></script>-->
+<!--<script src="../js_scripts/jquery.hoverex.min.js"></script>-->
+<!--<script src="../js_scripts/jquery.prettyPhoto.js"></script>-->
+<!--<script src="../js_scripts/jquery.isotope.min.js"></script>-->
 
 </body>
 
