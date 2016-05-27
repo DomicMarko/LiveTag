@@ -254,32 +254,3 @@ li:hover {
   background: #eee;
   cursor: pointer;
 }
-
-.largeImgWrapper {
-	width: 100%;
-	max-height: 513px;
-	overflow: hidden;
-}
-
-.largeImg {
-	margin: auto;
-}
-
-.smallImgWrapper {
-	width: 100%;
-	max-height: 153px;
-	overflow: hidden;
-}
-
-.smallImg {
-	margin: auto;
-}
-
-.caption h6 {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.thumbnail {
-	padding-bottom: 0;
-}

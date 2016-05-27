@@ -9,8 +9,14 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	var divLarge = document.createElement('div');
 	divLarge.className = 'col-md-12';
 	
+	var divThumbnail = document.createElement('div');
+	divThumbnail.className = 'thumbnail largeThumbnail';
+	
 	var divControls = document.createElement('div');
-	divControls.className = 'controls';		
+	divControls.className = 'caption';		
+	
+	var h4Votes = document.createElement('h6');
+	h4Votes.setAttribute('class', 'pull-right');
 	
 	var aVotes = document.createElement('div');
 	aVotes.className = 'votes';
@@ -55,21 +61,26 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aLargeUsername.setAttribute('href', '../andjela/profil.php?userID=' + userID);
 	aLargeUsername.innerHTML = username;	
 	
+	var h4LargeUsername = document.createElement('h6');
+	h4LargeUsername.appendChild(aLargeUsername);
+	
 	if(!guestCheck && !adminCheck) {
 		if(userInSessionID != userID) 
-			divControls.appendChild(aLargeLike);
+			h4Votes.appendChild(aLargeLike);
 		else 
-			divControls.appendChild(aLargeDelete);
+			h4Votes.appendChild(aLargeDelete);
 	}
 	
 	if(adminCheck) {		
-		divControls.appendChild(aLargeDelete);
+		h4Votes.appendChild(aLargeDelete);
 	}	
+
+	h4Votes.appendChild(aVotes);
 	
-	divControls.appendChild(aLargeUsername);
-	divControls.appendChild(aVotes);
+	divControls.appendChild(h4Votes);
+	divControls.appendChild(h4LargeUsername);
 	
-	divLarge.appendChild(divControls);
+	divThumbnail.appendChild(divControls);
 	
 	var aLargeImg = document.createElement('a');
 	aLargeImg.setAttribute('href', imgUrl);
@@ -86,7 +97,9 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	imgLargeDivWrapper.appendChild(imgLarge);
 
 	aLargeImg.appendChild(imgLargeDivWrapper);
-	divLarge.appendChild(aLargeImg);
+	divThumbnail.appendChild(aLargeImg);
+	
+	divLarge.appendChild(divThumbnail);
 	
 	divRow.appendChild(divLarge);
 	
@@ -102,7 +115,8 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	divSmall.className = 'col-sm-4 col-lg-4 col-md-4 portfolio-item';
 
 	var divThumbnail = document.createElement('div');
-	divThumbnail.className = 'thumbnail';
+	divThumbnail.className = 'thumbnail smallThumbnail';
+	divThumbnail.setAttribute('id', 'smallThumbnail');
 	
 	var aSmallImg = document.createElement('a');
 	aSmallImg.setAttribute('href', imgUrl);
@@ -282,7 +296,7 @@ function loadContent(data, userType) {
 	}
 
 	
-	document.getElementById("topic").innerHTML = topicName;
+	document.getElementById("topic").innerHTML = "#" + topicName;
 	
 	if(!guest && !admin) {
 		if (uploadImg) {
@@ -323,11 +337,11 @@ function loadContent(data, userType) {
 	document.getElementById('uploadLink').appendChild(h4ElementList);
 	
 
-	for( i = 0, j = 0; i < bigImagesArray.length; i++ ) {
+	for( i = 0; i < bigImagesArray.length; i++ ) {
 
 		var largeRow = createLargeImg(guest, admin, bigImagesArray[i].slikaID, bigImagesArray[i].url, bigImagesArray[i].glasovi, bigImagesArray[i].userID, bigImagesArray[i].username, bigImagesArray[i].izglasano);
 		document.getElementById("addRowsPoint").appendChild(largeRow);
-
+/*
 		// Main row for small images	
 		var divRow = document.createElement('div');
 		divRow.className = 'row';
@@ -340,9 +354,10 @@ function loadContent(data, userType) {
 		}
 		
 		document.getElementById("addRowsPoint").appendChild(divRow);
+		*/
 	}
 	
-
+	j = 0;
 	while(j < smallImagesArray.length) {				
 
 		// Main row for small images	
