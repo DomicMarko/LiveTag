@@ -99,7 +99,10 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	var userInSessionID = document.getElementById('hiddenInfoUserID').getAttribute('data-value');
 	
 	var divSmall = document.createElement('div');
-	divSmall.className = 'col-md-4 portfolio-item';
+	divSmall.className = 'col-sm-4 col-lg-4 col-md-4 portfolio-item';
+
+	var divThumbnail = document.createElement('div');
+	divThumbnail.className = 'thumbnail';
 	
 	var aSmallImg = document.createElement('a');
 	aSmallImg.setAttribute('href', imgUrl);
@@ -118,8 +121,11 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aSmallImg.appendChild(imgSmallDivWrapper);
 	
 	var divControls = document.createElement('div');
-	divControls.className = 'controls';
+	divControls.className = 'caption';
 	
+	var h4Votes = document.createElement('h6');
+	h4Votes.setAttribute('class', 'pull-right');
+
 	var aVotes = document.createElement('div');
 	aVotes.setAttribute('href',"#");
 	aVotes.setAttribute('data-value', imgID);
@@ -161,24 +167,32 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aSmallUsername.className = 'usernameLink';
 	aSmallUsername.id = userID;
 	aSmallUsername.setAttribute('href',"../andjela/profil.php?userID=" + userID);
-	aSmallUsername.innerHTML = username
+	aSmallUsername.innerHTML = username;
+
+	var h4SmallUsername = document.createElement('h6');
+	h4SmallUsername.appendChild(aSmallUsername);
+	
 
 	if(!guestCheck && !adminCheck) {
 		if(userInSessionID != userID) 
-			divControls.appendChild(aSmallLike);
+			h4Votes.appendChild(aSmallLike);
 		else 
-			divControls.appendChild(aSmallDelete);
+			h4Votes.appendChild(aSmallDelete);
 	}
 	
 	if(adminCheck) {		
-		divControls.appendChild(aSmallDelete);
+		h4Votes.appendChild(aSmallDelete);
 	}	
 		
-	divControls.appendChild(aSmallUsername);
-	divControls.appendChild(aVotes);
+	h4Votes.appendChild(aVotes);
+
+	divControls.appendChild(h4Votes);
+	divControls.appendChild(h4SmallUsername);	
 	
-	divSmall.appendChild(aSmallImg);
-	divSmall.appendChild(divControls);	
+	divThumbnail.appendChild(aSmallImg);
+	divThumbnail.appendChild(divControls);	
+
+	divSmall.appendChild(divThumbnail);
 	
 	return divSmall;	
 }

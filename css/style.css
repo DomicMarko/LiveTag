@@ -486,18 +486,11 @@ body {
 }
 
 .usernameLink {
-	float: left;
+	//float: left;
 }
 
 footer {
     margin: 50px 0;
-}
-
-.controls {
-	width: 100%;
-	float: right;
-	text-align: right;
-	display: block;
 }
 
 .row {
@@ -505,7 +498,7 @@ footer {
 }
 
 .votes {
-	float: right;
+	//float: right;
 	margin-right: 10px;
 }
 
