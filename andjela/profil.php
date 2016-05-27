@@ -11,12 +11,13 @@
 	}
 </script>
 <?php
-	session_start();
+    require_once('../genal/checklogin.php');
 	
 	if (isset($_POST['action']))
 		$userID = $_POST['userID'];
 	else
 		$userID = $_GET['userID'];
+
 	require_once 'Konekcija.php';
 	require_once 'config.php';
 	$konekcija = new Konekcija(DB_HOST, DB_NAME, DB_USER, DB_PASS);

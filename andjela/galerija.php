@@ -1,13 +1,12 @@
 <link rel="stylesheet" type="text/css" href="galerijacss.css">
 <?php
+    require_once('../genal/checklogin.php');
 	
-	session_start();
-	if($_SESSION['userName']){
+	if($_SESSION['userType'] != 'guest'){
 		$korisnik = $_SESSION['userName'];
 	}
 	else {
-		header("Location:profil.php");
-		exit;
+		$korisnik = '';
 	}
 	
 	if (array_key_exists('lajk',$_POST) || array_key_exists('unlike',$_POST)) {
@@ -144,9 +143,9 @@
 				if ($_SESSION['userName'] != $userdata[1]) echo " ne sam sebi";
 				if ($imaveclajk == false) echo " nema vec lajk";*/
 				
-				if ($i==0 && danasnja($datum[0]) && $korisnik != $userdata[1] && $imaveclajk == false)
+				if ($_SESSION['userType'] != 'guest' && $i==0 && danasnja($datum[0]) && $korisnik != $userdata[1] && $imaveclajk == false)
 					echo "<input type='submit' name='lajk' value='Glasaj'>";
-				if ($i==0 && danasnja($datum[0]) && $imaveclajk != false)
+				if ($_SESSION['userType'] != 'guest' && $i==0 && danasnja($datum[0]) && $imaveclajk != false)
 					echo "<input type='submit' name='unlike' value='Unlike'>";
 				echo "</div></div>";
 			
