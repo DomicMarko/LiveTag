@@ -8,10 +8,9 @@
 	URL: http://alvarez.is
 	
 ################################################################# */ 
+
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);
-@import url("prettyPhoto.css") screen;
-@import url("hoverex-all.css") screen;
 
 /*	################################################################
 	1. GENERAL STRUCTURES
@@ -107,7 +106,8 @@ a:focus {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-	color: #00b3fe;
+	color: #FFF;
+	background-color: #76c85a;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -470,6 +470,7 @@ csmall2 {
  * Start Bootstrap - 3 Col Portfolio HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ *
  * Edited by Marko Domić for LiveTag project
  */
 
@@ -487,18 +488,11 @@ body {
 }
 
 .usernameLink {
-	float: left;
+	//float: left;
 }
 
 footer {
     margin: 50px 0;
-}
-
-.controls {
-	width: 100%;
-	float: right;
-	text-align: right;
-	display: block;
 }
 
 .row {
@@ -506,15 +500,51 @@ footer {
 }
 
 .votes {
-	float: right;
+	//float: right;
 	margin-right: 10px;
 }
 
 .container {
-	max-width: 900px;
+	max-width: 1200px;
 }
 
 .topicHeader {
 	text-align: center;
 }
 
+.largeImgWrapper {
+	width: 100%;
+	max-height: 513px;
+	overflow: hidden;
+}
+
+.largeImg {
+	margin: auto;
+}
+
+.smallImgWrapper {
+	width: 100%;
+	max-height: 153px;
+	overflow: hidden;
+}
+
+.smallImg {
+	margin: auto;
+}
+
+.caption h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#smallThumbnail {
+	padding-bottom: 0;
+}
+
+.headerPage {
+	color: #FFF;
+	background-color: #76c85a  ;
+	border-radius: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

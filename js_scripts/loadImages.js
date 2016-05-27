@@ -7,10 +7,16 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	divRow.className = 'row';
 	
 	var divLarge = document.createElement('div');
-	divLarge.className = 'col-lg-12';
+	divLarge.className = 'col-md-12';
+	
+	var divThumbnail = document.createElement('div');
+	divThumbnail.className = 'thumbnail largeThumbnail';
 	
 	var divControls = document.createElement('div');
-	divControls.className = 'controls';		
+	divControls.className = 'caption';		
+	
+	var h4Votes = document.createElement('h6');
+	h4Votes.setAttribute('class', 'pull-right');
 	
 	var aVotes = document.createElement('div');
 	aVotes.className = 'votes';
@@ -55,25 +61,30 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aLargeUsername.setAttribute('href', '../andjela/profil.php?userID=' + userID);
 	aLargeUsername.innerHTML = username;	
 	
+	var h4LargeUsername = document.createElement('h6');
+	h4LargeUsername.appendChild(aLargeUsername);
+	
 	if(!guestCheck && !adminCheck) {
 		if(userInSessionID != userID) 
-			divControls.appendChild(aLargeLike);
+			h4Votes.appendChild(aLargeLike);
 		else 
-			divControls.appendChild(aLargeDelete);
+			h4Votes.appendChild(aLargeDelete);
 	}
 	
 	if(adminCheck) {		
-		divControls.appendChild(aLargeDelete);
+		h4Votes.appendChild(aLargeDelete);
 	}	
+
+	h4Votes.appendChild(aVotes);
 	
-	divControls.appendChild(aLargeUsername);
-	divControls.appendChild(aVotes);
+	divControls.appendChild(h4Votes);
+	divControls.appendChild(h4LargeUsername);
 	
-	divLarge.appendChild(divControls);
+	divThumbnail.appendChild(divControls);
 	
 	var aLargeImg = document.createElement('a');
 	aLargeImg.setAttribute('href', imgUrl);
-	aLargeImg.setAttribute('class','fancybox-effects-a');
+	aLargeImg.setAttribute('class','fancybox-effects-d');
 	
 	var imgLarge = document.createElement("img");
 	imgLarge.setAttribute('class', 'img-responsive largeImg');
@@ -86,7 +97,9 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	imgLargeDivWrapper.appendChild(imgLarge);
 
 	aLargeImg.appendChild(imgLargeDivWrapper);
-	divLarge.appendChild(aLargeImg);
+	divThumbnail.appendChild(aLargeImg);
+	
+	divLarge.appendChild(divThumbnail);
 	
 	divRow.appendChild(divLarge);
 	
@@ -99,11 +112,15 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	var userInSessionID = document.getElementById('hiddenInfoUserID').getAttribute('data-value');
 	
 	var divSmall = document.createElement('div');
-	divSmall.className = 'col-md-4 portfolio-item';
+	divSmall.className = 'col-sm-4 col-lg-4 col-md-4 portfolio-item';
+
+	var divThumbnail = document.createElement('div');
+	divThumbnail.className = 'thumbnail smallThumbnail';
+	divThumbnail.setAttribute('id', 'smallThumbnail');
 	
 	var aSmallImg = document.createElement('a');
 	aSmallImg.setAttribute('href', imgUrl);
-	aSmallImg.setAttribute('class','fancybox-effects-a');
+	aSmallImg.setAttribute('class','fancybox-effects-d');
 	
 	var imgSmall = document.createElement("img");
 	imgSmall.setAttribute('class', 'img-responsive smallImg');
@@ -118,8 +135,11 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aSmallImg.appendChild(imgSmallDivWrapper);
 	
 	var divControls = document.createElement('div');
-	divControls.className = 'controls';
+	divControls.className = 'caption';
 	
+	var h4Votes = document.createElement('h6');
+	h4Votes.setAttribute('class', 'pull-right');
+
 	var aVotes = document.createElement('div');
 	aVotes.setAttribute('href',"#");
 	aVotes.setAttribute('data-value', imgID);
@@ -161,24 +181,32 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	aSmallUsername.className = 'usernameLink';
 	aSmallUsername.id = userID;
 	aSmallUsername.setAttribute('href',"../andjela/profil.php?userID=" + userID);
-	aSmallUsername.innerHTML = username
+	aSmallUsername.innerHTML = username;
+
+	var h4SmallUsername = document.createElement('h6');
+	h4SmallUsername.appendChild(aSmallUsername);
+	
 
 	if(!guestCheck && !adminCheck) {
 		if(userInSessionID != userID) 
-			divControls.appendChild(aSmallLike);
+			h4Votes.appendChild(aSmallLike);
 		else 
-			divControls.appendChild(aSmallDelete);
+			h4Votes.appendChild(aSmallDelete);
 	}
 	
 	if(adminCheck) {		
-		divControls.appendChild(aSmallDelete);
+		h4Votes.appendChild(aSmallDelete);
 	}	
 		
-	divControls.appendChild(aSmallUsername);
-	divControls.appendChild(aVotes);
+	h4Votes.appendChild(aVotes);
+
+	divControls.appendChild(h4Votes);
+	divControls.appendChild(h4SmallUsername);	
 	
-	divSmall.appendChild(aSmallImg);
-	divSmall.appendChild(divControls);	
+	divThumbnail.appendChild(aSmallImg);
+	divThumbnail.appendChild(divControls);	
+
+	divSmall.appendChild(divThumbnail);
 	
 	return divSmall;	
 }
@@ -268,7 +296,7 @@ function loadContent(data, userType) {
 	}
 
 	
-	document.getElementById("topic").innerHTML = topicName;
+	document.getElementById("topic").innerHTML = "#" + topicName;
 	
 	if(!guest && !admin) {
 		if (uploadImg) {
@@ -309,11 +337,11 @@ function loadContent(data, userType) {
 	document.getElementById('uploadLink').appendChild(h4ElementList);
 	
 
-	for( i = 0, j = 0; i < bigImagesArray.length; i++ ) {
+	for( i = 0; i < bigImagesArray.length; i++ ) {
 
 		var largeRow = createLargeImg(guest, admin, bigImagesArray[i].slikaID, bigImagesArray[i].url, bigImagesArray[i].glasovi, bigImagesArray[i].userID, bigImagesArray[i].username, bigImagesArray[i].izglasano);
 		document.getElementById("addRowsPoint").appendChild(largeRow);
-
+/*
 		// Main row for small images	
 		var divRow = document.createElement('div');
 		divRow.className = 'row';
@@ -326,9 +354,10 @@ function loadContent(data, userType) {
 		}
 		
 		document.getElementById("addRowsPoint").appendChild(divRow);
+		*/
 	}
 	
-
+	j = 0;
 	while(j < smallImagesArray.length) {				
 
 		// Main row for small images	
