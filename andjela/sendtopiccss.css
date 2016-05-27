@@ -19,7 +19,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	border-radius: 8px;
 }
 
 #btn:hover, a:hover{
@@ -33,5 +32,4 @@ input[type=text] {
     margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #00b3fe;
-    border-radius: 4px;
 }

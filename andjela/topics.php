@@ -89,7 +89,7 @@
 
 <div class="glavni">
 	<?php
-		for ($i=0; $i<count($teme); $i++) {
+		for ($i=0; $i<(count($teme)>10 ? 10 : count($teme)); $i++) {
 			$query = "SELECT SlikaURL, KorisnikID FROM slika_post WHERE SlikaID=" . $teme[$i]['PrvoMesto'];
 			$slika1 = $konekcija->getRecord($query);
 			$query = "SELECT Ime, Prezime, BrojPoena FROM korisnik WHERE KorisnikID=" . $slika1[1];

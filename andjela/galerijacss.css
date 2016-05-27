@@ -61,7 +61,7 @@
 	margin-top: 60px;
 }
 
-a {
+#nazad {
 	background-color: #00b3fe;
 	border: 2px solid white;
     color: white;
@@ -70,10 +70,11 @@ a {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	border-radius: 8px;
+	margin-left: 8px;
+	margin-top: 8px;
 }
 
-a:hover {
+#nazad:hover {
 	background-color: white;
     color: #00b3fe;
 	border: 2px solid #00b3fe;
@@ -90,7 +91,6 @@ input[type=submit] {
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-	border-radius: 8px;
 	margin-left:10px;
 }
 

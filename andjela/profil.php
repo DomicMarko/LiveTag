@@ -213,10 +213,10 @@
 		<div class="divpodaci">
 			<div class="podeli">
 				<font>
-				<table cellpadding="5">
+				<table cellspacing="8">
 					<tr><td><b>Username:</b></td><td> <b><?php echo $userdata[1]; ?></b></td><td></td></tr>
-					<tr><td><b>Status:</b></td><td> <b><?php echo $userdata[10]; ?></b></td><td></td></tr>
-					<tr><td>Sakupljen broj poena:</td><td> <?php echo $userdata[9]; ?></td><td></td></tr>
+					<tr><td><b>Status:</b></td><td> <b><?php echo $userdata[11]; ?></b></td><td></td></tr>
+					<tr><td>Sakupljen broj poena:&nbsp;&nbsp;</td><td> <?php echo $userdata[9]; ?></td><td></td></tr>
 					
 					<tr><td>Ime:</td><td> <?php echo $userdata[3]; ?></td>
 						<td><?php if (itsme($userdata[1])) {?> <input type='button' onclick="lozinka('skrivenoime')" value='Promeni ime'> <?php } ?></td></tr>
