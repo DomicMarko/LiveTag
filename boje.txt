@@ -1,0 +1,4 @@
+#00b3fe - plava
+#5bb85d - zelena
+#d9544f - crvena
+#efad4d - zuta

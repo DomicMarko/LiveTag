@@ -32,10 +32,16 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 			aLargeLike.className = 'likeLink';
 			aLargeLike.id = 'like_' + imgID;
 			aLargeLike.setAttribute('data-value', imgID);
+			/*
+			var votedImg = document.createElement('img');
+			votedImg.setAttribute('src', '../icons/blue-bullet-clipart-1.png');
+			*/
 			if(voted > 0) 
 				aLargeLike.innerHTML = "Unlike";
 			else 
 				aLargeLike.innerHTML = "Like";
+				
+			//aLargeLike.appendChild(votedImg);
 						
 		} else {
 			
@@ -285,7 +291,7 @@ function loadContent(data, userType) {
 	}	
 	
 	if(isMessage) {
-		
+
 		var aMessage = document.createElement('a');
 		aMessage.setAttribute('href', '#');
 		aMessage.setAttribute('id', 'newMessage');
@@ -306,7 +312,8 @@ function loadContent(data, userType) {
 		
 			aUploadLinkUploadImg.setAttribute('href', 'upload_img.php');
 			aUploadLinkUploadImg.setAttribute('target', '_self');
-			aUploadLinkUploadImg.innerHTML = 'Objavite sliku';
+			aUploadLinkUploadImg.setAttribute('class', 'sideLinks');
+			aUploadLinkUploadImg.innerHTML = '&bull; Objavite sliku';
 		
 			h4ElementUploadImg.appendChild(aUploadLinkUploadImg);
 			document.getElementById('uploadLink').appendChild(h4ElementUploadImg);	
@@ -319,7 +326,8 @@ function loadContent(data, userType) {
 		
 			aUploadLinkSendTopic.setAttribute('href', '../andjela/sendtopic.php');
 			aUploadLinkSendTopic.setAttribute('target', '_self');
-			aUploadLinkSendTopic.innerHTML = 'Pošaljite topik';
+			aUploadLinkSendTopic.setAttribute('class', 'sideLinks');
+			aUploadLinkSendTopic.innerHTML = '&bull; Pošaljite topik';
 		
 			h4ElementSendTopic.appendChild(aUploadLinkSendTopic);
 			document.getElementById('uploadLink').appendChild(h4ElementSendTopic);	
@@ -331,7 +339,8 @@ function loadContent(data, userType) {
 		
 	aUploadLinkList.setAttribute('href', '../andjela/topics.php');
 	aUploadLinkList.setAttribute('target', '_self');
-	aUploadLinkList.innerHTML = 'Spisak topika i pobednika';
+	aUploadLinkList.setAttribute('class', 'sideLinks');
+	aUploadLinkList.innerHTML = '&bull; Spisak topika i pobednika';
 		
 	h4ElementList.appendChild(aUploadLinkList);
 	document.getElementById('uploadLink').appendChild(h4ElementList);
@@ -531,6 +540,8 @@ function events() {
 	$('#newMessage').on("click", function() {
 		var modal = document.getElementById('modal-body-message');
 		var message = document.getElementById('hiddenNewMessage').getAttribute('data-value');
+		
+		$('#newMessage').css('background-color', 'transparent');
 		
 		modal.innerHTML = message;				
 		document.getElementById('myModalMessage').style.display = "block";		

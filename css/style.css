@@ -102,12 +102,25 @@ a:focus {
 .navbar-default .navbar-nav > li > a {
 	color: white;
 	font-weight: 700;
-	font-size: 12px;
+	font-size: 14px;
+	border-radius: 10px;
+}
+
+#newMessage {
+	
+	background-color: #d9544f; 
+}
+
+.navbar-default .navbar-nav > li {
+
+	border-radius: 10px;
+	margin-left: 20px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
 	color: #FFF;
 	background-color: #76c85a;
+	border-radius: 10px;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -544,7 +557,11 @@ footer {
 .headerPage {
 	color: #FFF;
 	background-color: #76c85a  ;
-	border-radius: 30px;
+	border-radius: 3px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.sideLinks:hover {
+	text-decoration: underline;
 }

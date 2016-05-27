@@ -74,7 +74,7 @@
         </div>
         <!-- /.container -->
     </nav>
-
+<img src="../icons/face-black.png" alt="nesto"/>
     <!-- Page Content -->
     <div class="container">
 

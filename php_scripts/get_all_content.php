@@ -34,43 +34,34 @@
 	$dayBeforeTemp = strtotime("-1 day", strtotime($currentDate));
 	$dayBefore = date("Y-m-d", $dayBeforeTemp);
 	
+	$queryMessage = "SELECT StiglaPoruka, PorukaZaElite " . 
+		"FROM korisnik " . 
+		"WHERE KorisnikID = " . $logedInUserID;
+
+	$resultMessage = mysqli_query($db, $queryMessage) or die(mysqli_error());
+
+	$isMessage = 0;
+	$message = "";
+
+	if(mysqli_num_rows($resultMessage) > 0) {
+
+		$row = mysqli_fetch_array($resultMessage);
+		$isMessage = $row["StiglaPoruka"];
+		$message = $row["PorukaZaElite"];
+	}
+
+	if($isMessage > 0) {
+
+		$response["isMessage"] = true;
+		$response["message"] = $message;
+	} else {
+
+		$response["isMessage"] = false;
+		$response["message"] = null;
+	}
+	
 	//check if user can send topic
-	if($logedInUserType == 'elite') {
-
-		$queryMessage = "SELECT StiglaPoruka, PorukaZaElite " . 
-			"FROM korisnik " . 
-			"WHERE KorisnikID = " . $logedInUserID;
-
-		$resultMessage = mysqli_query($db, $queryMessage) or die(mysqli_error());
-
-		$isMessage = 0;
-		$message = "";
-
-		if(mysqli_num_rows($resultMessage) > 0) {
-
-			$row = mysqli_fetch_array($resultMessage);
-			$isMessage = $row["StiglaPoruka"];
-			$message = $row["PorukaZaElite"];
-
-		}
-
-		if($isMessage > 0) {
-
-			$response["isMessage"] = true;
-			$response["message"] = $message;
-/*
-			$queryUpdateMessage = "UPDATE korisnik " . 
-				"SET StiglaPoruka = 0, PorukaZaElite = null " . 
-				"WHERE KorisnikID = " . $logedInUserID;
-
-			$resultUpdateMessage = mysqli_query($db, $queryUpdateMessage) or die(mysqli_error());	
-*/
-		} else {
-
-			$response["isMessage"] = false;
-			$response["message"] = null;
-		}
-
+	if($logedInUserType == 'elite') {		
 
 		$querySendTopic = "SELECT * " .
 			"FROM topik " . 
