@@ -7,7 +7,7 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	divRow.className = 'row';
 	
 	var divLarge = document.createElement('div');
-	divLarge.className = 'col-lg-12';
+	divLarge.className = 'col-md-12';
 	
 	var divControls = document.createElement('div');
 	divControls.className = 'controls';		
@@ -73,7 +73,7 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	
 	var aLargeImg = document.createElement('a');
 	aLargeImg.setAttribute('href', imgUrl);
-	aLargeImg.setAttribute('class','fancybox-effects-a');
+	aLargeImg.setAttribute('class','fancybox-effects-d');
 	
 	var imgLarge = document.createElement("img");
 	imgLarge.setAttribute('class', 'img-responsive largeImg');
@@ -103,7 +103,7 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 	
 	var aSmallImg = document.createElement('a');
 	aSmallImg.setAttribute('href', imgUrl);
-	aSmallImg.setAttribute('class','fancybox-effects-a');
+	aSmallImg.setAttribute('class','fancybox-effects-d');
 	
 	var imgSmall = document.createElement("img");
 	imgSmall.setAttribute('class', 'img-responsive smallImg');

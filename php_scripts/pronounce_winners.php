@@ -118,7 +118,7 @@
 				$imgIDs = $imgIDs . ")";				
 				
 				
-				$queryTop5Users = "SELECT s.KorisnikID, k.BrojPoena " .
+				$queryTop5Users = "SELECT s.KorisnikID, k.BrojPoena, k.StiglaPoruka, k.PorukaZaElite " .
 					"FROM slika_post s, korisnik k " . 
 					"WHERE s.SlikaID IN " . $imgIDs . " " .
 					"AND s.KorisnikID = k.KorisnikID " . 
@@ -136,7 +136,9 @@
 						// temp array
 						$res = array();
 						$res["userID"] = $row["KorisnikID"];
-						$res["points"] = $row["BrojPoena"];					
+						$res["points"] = $row["BrojPoena"];
+						$res["isMessage"] = $row["StiglaPoruka"];
+						$res["message"] = $row["PorukaZaElite"];					
 				
 						// push single row into final response array
 						array_push($response, $res);
@@ -156,9 +158,23 @@
 					if(($response[$i]["points"] >= 100) && ($response[$i]["points"] < 200)) $userType = "premium";
 					if($response[$i]["points"] >= 200) $userType = "elite";
 					
+					$sendMessage = "Čestitamo! Osvojili ste " . ($i + 1) . ". mesto sa vašom slikom prethodnog dana. " . 
+						"Osvojili ste " . ($points + 2) . " poena, vaš ukupni broj ostvarenih poena je " . $response[$i]["points"] . 
+						", vaš trenutni status je \"" . $userType . "\"."; 
+					
+					if($response[$i]["isMessage"] > 0) {
+						
+						$response[$i]["message"] = $response[$i]["message"] . "<br/><br/>" . $sendMessage;
+					} else {
+						
+						$response[$i]["message"] = $sendMessage;
+					}
+					
 					$queryUpdateUser = "UPDATE korisnik " . 
-						"SET BrojPoena = " . $response[$i]["points"] . ", TipKorisnika = '" . $userType . "' " .
-						"WHERE KorisnikID = " . $response[$i]["userID"];																
+						"SET BrojPoena = " . $response[$i]["points"] . ", TipKorisnika = '" . $userType . "', StiglaPoruka = 1, PorukaZaElite = '" . $response[$i]["message"] . "' " . 
+						"WHERE KorisnikID = " . $response[$i]["userID"];	
+						
+					//echo $queryUpdateUser;																					
 						
 					$resultUpdateUser = mysqli_query($this->db, $queryUpdateUser) or die(mysqli_error());					
 					
