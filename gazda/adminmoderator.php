@@ -85,7 +85,7 @@ include '../genal/checkadmin.php';
 
 				include 'connection.php';
 				
-				$query = "SELECT * FROM topik";
+				$query = "SELECT * FROM topik ORDER BY DatumObjave";
 				$result = mysql_query($query);
 				
 				while($topiks = mysql_fetch_array($result)){
@@ -113,6 +113,22 @@ include '../genal/checkadmin.php';
 			?>
 			</div>
 		</div>  <br><br><br>
+			<div class="poruka">
+				<form align="center" action="swaptopikadm.php" method="post">
+					<h1 style="margin-top: 0px; text-align: center; padding-top: 20px; margin-bottom: 0px;">Swapujte 2 topika:</h1><br>
+					<div style="text-align:center; margin: auto; width: 100%;">
+					<div style="width:100%; ">Naziv prvog topika: <input name="top1" type="text" style="width:33%; margin-left: 20px;"></input></div><br>
+					<div style="width: 100%;">
+					<div>
+					<div style="width:100%; ">Naziv drugog topika: <input name="top2" type="text" style="width:33%; margin-left: 10px;"></input></div>
+					</div><br>				
+					<div style="width:46%; margin:auto; text-align:right;">
+					<input name="submit" type="submit" value="Swapujte" style="padding: 10px;"></input>
+					</div>
+					</div>
+					</div>
+				</form>
+			</div>
 		
 			<div id="poruka">
 				<form align="center" action="admposaljiporuku.php" method="post">
@@ -133,6 +149,18 @@ include '../genal/checkadmin.php';
 			</div>
 	</div>
 <?php
+	if (isset($_GET['Messagexyz'])) {
+				$msg = $_GET['Messagexyz'];
+				echo "<script type='text/javascript'>alert('$msg');</script>";
+			}
+	if (isset($_GET['Messagexy'])) {
+				$msg = $_GET['Messagexy'];
+				echo "<script type='text/javascript'>alert('$msg');</script>";
+			}
+	if (isset($_GET['Messagex'])) {
+				$msg = $_GET['Messagex'];
+				echo "<script type='text/javascript'>alert('$msg');</script>";
+			}
 	if (isset($_GET['Message'])) {
 				$msg = $_GET['Message'];
 				echo "<script type='text/javascript'>alert('$msg');</script>";
