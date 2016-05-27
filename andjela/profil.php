@@ -201,13 +201,6 @@
 				}
 				else echo "<div class='picsize'><img src='". $userdata[12] . "'></div>";
 			?>
-			</br></br>
-			<?php
-				if (itsme($userdata[1])) {
-					echo "<div id='menjajprofilnu'>Promeni profilnu sliku:</br>";
-					echo "<input type='file' name='fajl'><input type='submit' name='action' value='Promeni' style='margin-top:5px'></div>";
-				}
-			?>
 		</div>
 		<div class="divpodaci">
 			<div class="podeli">
@@ -266,36 +259,55 @@
 					</div>
 			</div>
 			
+		</div>
+	</div>
+	
+	<?php if (itsme($userdata[1])) { ?>
+	
+	<div id="srednji">
+		<div id="drugisrednji">
+			
+			<div id='menjajprofilnu'>Promeni profilnu sliku:</br>
+			<input type='file' name='fajl'><input type='submit' name='action' value='Promeni' style='margin-top:5px'></div>
+				
+			
+			
 			<div id="divlozinka">
-			<?php if (itsme($userdata[1])) { ?>
+				
 				<input type='button' onclick="lozinka('skrivenalozinka');" value='Promeni lozinku'></br>
-			<?php } ?>
+				
 				<div id="skrivenalozinka">
-					Unesite novu lozinku:</br>
-					<input type="text" name="pass" size="20"></br>
-				
-				
-					Potvrdite novu lozinku:</br>
-					<input type="text" name="pass2" size="20">
-				
-				
-					<input type='submit' name='action' value='Potvrdi'>
+					<table>
+						<tr>
+							<td>Unesite novu lozinku:</td>
+							<td colspan="2">&nbsp;&nbsp;Potvrdite novu lozinku:</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="pass" size="20"></td>
+							<td>&nbsp;&nbsp;<input type="text" name="pass2" size="20"></td>
+							<td>&nbsp;<input type='submit' name='action' value='Potvrdi'></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 	
+	<?php } ?>
+	
 	<div id="malagalerija">
-	<?php
-		if ($pictures == false)
-			echo "Korisnik nema nijednu objavljenu sliku.";
-		else {
-			for($i = 0; ($i < count($pictures)) && ($i < 3); $i++) {
+		<div id="unutrasnjagalerija">
+		<?php
+			if ($pictures == false)
+				echo "Korisnik nema nijednu objavljenu sliku.";
+			else {
+				for($i = 0; ($i < count($pictures)) && ($i < 3); $i++) {
 
-				echo "<div id='slika" . ($i + 1) . "'><img src='" . $pictures[$i]['SlikaURL'] . "'></div>";
+					echo "<div id='slika" . ($i + 1) . "'><img src='" . $pictures[$i]['SlikaURL'] . "'></div>";
+				}
 			}
-		}
-	?>
+		?>
+		</div>
 	</div>
 	
 	<?php
