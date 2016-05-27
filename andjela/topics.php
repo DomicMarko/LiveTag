@@ -116,7 +116,8 @@
 			$user5 = $konekcija->getRecord($query);
 			
 			echo "<div class='jedantopik'>";
-			echo "<h3>" . $teme[$i]['DatumObjave'] . " - " . $teme[$i]['Naziv'] . "</h3>";
+			$date=date_create($teme[$i]['DatumObjave']);
+			echo "<h3>" . date_format($date,"d.m.Y.") . " - " . $teme[$i]['Naziv'] . "</h3>";
 				
 				echo "<table>";
 				echo "<tr>";

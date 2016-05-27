@@ -33,8 +33,12 @@
 
 .podeli {
 	float: left;
-	margin-top: 86px;
+	margin-top: 40px;
 	margin-left: 10px;
+}
+
+td {
+	height: 35px;
 }
 
 #desnidiv {

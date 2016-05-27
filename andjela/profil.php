@@ -12,7 +12,6 @@
 </script>
 <?php
 	session_start();
-	//$_SESSION['userName'] ='veljaRob';
 	
 	if (isset($_POST['action']))
 		$userID = $_POST['userID'];
@@ -84,7 +83,7 @@
 	}
 
 	function itsme($person) {
-		if ($_SESSION['userName'] == $person) return true;
+		if ($_SESSION['userType']!='guest' && $_SESSION['userName'] == $person) return true;
 		return false;
 	}
 ?>
@@ -161,7 +160,7 @@
 <form action ="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
 <div id="sve">
 	<?php
-		if ($_SESSION['userName'] == 'admin') {
+		if ($_SESSION['userType']!='guest' && $_SESSION['userName'] == 'admin') {
 			echo "<tr><td>";
 			echo "<input type='submit' name='action' value='Obrisi korisnika'>";
 			echo "</td><td></td><td></td></tr>";
