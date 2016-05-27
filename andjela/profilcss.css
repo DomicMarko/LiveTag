@@ -11,6 +11,21 @@
 	/*padding:10px;*/
 }
 
+#srednji {
+	border: 2px solid #00b3fe;
+	border-radius: 10px;
+	height:150px;
+	margin-top: 30px;
+	position:relative;
+}
+
+#drugisrednji {
+	height: 80px;
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
 .divprofilna {
 	width: 320px;
 	height: 400px;
@@ -24,11 +39,6 @@
 	height: 400px;
 	float: left;
 	margin-left:10px;
-}
-
-#kompletna {
-	position: relative;
-	top: 200px;
 }
 
 .podeli {
@@ -50,11 +60,15 @@ td {
 	position: relative;
 }
 
+#menjajprofilnu {
+	float: left;
+	display: inline-block;
+	margin-left: 15px;
+}
+
 #divlozinka {
-	clear: left;
+	float: left;
 	height: 50px;
-	position: relative;
-	top: 54px;
 }
 
 #skrivenalozinka {
@@ -97,10 +111,15 @@ td {
 
 #malagalerija {
 	clear: left;
-	position: relative;
-	top: 200px;
+	margin-top: 30px;
+	height: 184px;
 	border: 2px solid #00b3fe;
 	border-radius: 10px;
+}
+
+#unutrasnjagalerija {
+	display: table;
+    margin: 0 auto;
 }
 
 #slika1 {
@@ -110,8 +129,6 @@ td {
 
 #slika1 img {
 	max-height: 180px;
-	border-top-left-radius: 8px;
-	border-bottom-left-radius: 8px;
 }
 
 #slika2 {
