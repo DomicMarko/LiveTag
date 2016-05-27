@@ -11,7 +11,10 @@
 			$provera = $info['Username'];
 			
 			if($provera == $name && $name != '' && $poruka != ''){
-				mysql_query("UPDATE korisnik SET PorukaZaElite='$poruka' WHERE username = '$name'") or die(mysql_error());
+				$trenutnapor = mysql_fetch_array(mysql_query("SELECT * FROM korisnik WHERE username = '$name'"));
+				$trenutnaporuka = $trenutnapor['PorukaZaElite'];
+				$novaporuka = $trenutnaporuka . "\n" . "Poruka od moderatora:\n" . $poruka;
+				mysql_query("UPDATE korisnik SET PorukaZaElite='$novaporuka' WHERE username = '$name'") or die(mysql_error());
 				mysql_query("UPDATE korisnik SET StiglaPoruka='$br' WHERE username = '$name'") or die(mysql_error());
 				header("Location: adminmoderator.php?Message=" . urlencode('Uspesno ste poslali poruku korisniku.'));	
 			}

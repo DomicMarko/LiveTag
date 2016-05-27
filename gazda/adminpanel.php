@@ -1,3 +1,7 @@
+<?php
+include '../genal/checklogin.php';
+include '../genal/checkadmin.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
 <html>
 <head>
