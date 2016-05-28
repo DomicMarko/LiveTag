@@ -8,7 +8,7 @@
 	left: 350px;
 }
 
-#btn, a {
+#btn, #nazad {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	background-color: #00b3fe;
@@ -21,7 +21,12 @@
     font-size: 16px;
 }
 
-#btn:hover, a:hover{
+#nazad {
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+#btn:hover, #nazad:hover{
 	background-color: white;
     color: #00b3fe;
 	border: 2px solid #00b3fe;
@@ -32,4 +37,8 @@ input[type=text] {
     margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #00b3fe;
+}
+
+.tekst {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
