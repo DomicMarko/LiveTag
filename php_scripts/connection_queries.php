@@ -11,7 +11,7 @@
 
 
 
-	class ConnectionDb {
+	class queryExecutor {
 	
 		private $connLine;
 		private $error;
@@ -21,11 +21,13 @@
 			$this->connLine = $db;
 		}
 	
+		// method for executing query without returned value
 		public function queryWithoutRecords($query) {
 		
-			$rezultat = mysqli_query($this->connLine, $query) or die(mysqli_error());
+			$result = mysqli_query($this->connLine, $query) or die(mysqli_error());
 		}
 		
+
 		public function getRecord($query) {
 		
 			$result = mysqli_query($this->connLine, $query);
@@ -37,7 +39,7 @@
 				return 0;
 			} else {
 			
-				$row = mysqli_fetch_row($result); 				
+				$row = mysqli_fetch_array($result); 						
 				return $row;
 			}
 		}
@@ -54,7 +56,7 @@
 				return 0;
 			}
 			
-			while ($row = mysql_fetch_array($result)) $records[] = $row; 
+			while ($row = mysqli_fetch_array($result)) $records[] = $row; 
 						
 			return $records;
 		}

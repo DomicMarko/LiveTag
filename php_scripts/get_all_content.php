@@ -10,12 +10,12 @@
 	################################################################# */ 
 
 	
-
-	session_start();
-
 	/*
 	 * Following code will list all the images and info about them
 	 */
+
+
+	session_start();	 
 	
 	// include db connect class
 	require_once ('db_connect.php');
@@ -23,12 +23,19 @@
 	// include Pronounce class
 	require_once ('pronounce_winners.php');
 	
+	// include queryExecutor class
+	require_once ('connection_queries.php');
+	
 	$topikID = 0;
 	$topicsUserID = 0;
 	$topicPublished = -1;
 	
 	// array for JSON response
 	$response = array();
+	
+	// error response
+	$response["errorFlag"] = 0;
+	$response["errorMessage"] = "";
 	
 	// get loged in user id
 	$logedInUserID = $_POST['logedInUserID'];
@@ -41,26 +48,60 @@
 	
 	$db = $dbb->getDb();
 	
+	// making new query executor
+	$executor = new queryExecutor($db);
+	
+	// making reserve query executor
+	$executorHelp = new queryExecutor($db);
+	
+	// curent date and date before for fetching topic
 	$currentDate = date("Y-m-d");	
 	$dayBeforeTemp = strtotime("-1 day", strtotime($currentDate));
 	$dayBefore = date("Y-m-d", $dayBeforeTemp);
 	
+	
+	
+	// ############################################################################################# 
+	//
+	//		All queries
+	
 	$queryMessage = "SELECT StiglaPoruka, PorukaZaElite " . 
 		"FROM korisnik " . 
 		"WHERE KorisnikID = " . $logedInUserID;
+		
+	$querySendTopic = "SELECT * " .
+		"FROM topik " . 
+		"WHERE KorisnikID = " . $logedInUserID . " " .
+		"AND Objavljen < 2";
 
-	$resultMessage = mysqli_query($db, $queryMessage) or die(mysqli_error());
+	$queryRequests = "SELECT * " . 
+		"FROM zahtev " . 
+		"WHERE KorisnikID = " . $logedInUserID;
+		
+	$queryTopic = "SELECT Naziv, TopikID, KorisnikID, Objavljen " .
+		"FROM topik " . 
+		"WHERE DatumObjave = '" . $currentDate . "'";		
+		
+	// ############################################################################################# 
+		
+	$resultMessage = $executor->getRecord($queryMessage);
 
 	$isMessage = 0;
 	$message = "";
 
-	if(mysqli_num_rows($resultMessage) > 0) {
-
-		$row = mysqli_fetch_array($resultMessage);
-		$isMessage = $row["StiglaPoruka"];
-		$message = $row["PorukaZaElite"];
+	if($resultMessage != 0) {
+	
+		// get new message for user	
+		$isMessage = $resultMessage["StiglaPoruka"];
+		$message = $resultMessage["PorukaZaElite"];
+	} else {
+		
+		// error getting new message
+		$response["errorFlag"] = 1;
+		$response["errorMessage"] .= $executor->getError() . "<br/><br/>";
 	}
 
+	// check if there is a message for user
 	if($isMessage > 0) {
 
 		$response["isMessage"] = true;
@@ -74,46 +115,30 @@
 	//check if user can send topic
 	if($logedInUserType == 'elite') {		
 
-		$querySendTopic = "SELECT * " .
-			"FROM topik " . 
-			"WHERE KorisnikID = " . $logedInUserID . " " .
-			"AND Objavljen < 2";
-
-		$queryRequests = "SELECT * " . 
-			"FROM zahtev " . 
-			"WHERE KorisnikID = " . $logedInUserID;
-
 		// get num of topics for loggedin user
-		$resultNumTopics = mysqli_query($db, $querySendTopic) or die(mysqli_error());	
+		$resultNumTopics = $executor->getRecordSet($querySendTopic);	
 
 		// get num of requested topics for loggedin user
-		$resultRequests = mysqli_query($db, $queryRequests) or die(mysqli_error());	
+		$resultRequests = $executorHelp->getRecordSet($queryRequests);	
 	
-		if ((mysqli_num_rows($resultNumTopics) > 0) || (mysqli_num_rows($resultRequests) > 0)) {
+		if (($resultNumTopics != 0) || ($resultRequests != 0)) {
 			$response["sendTopic"] = false;			
 		} else {
 			$response["sendTopic"] = true;
 		}
 	} else {
 		$response["sendTopic"] = false;
-	}
-
-	$queryTopic = "SELECT Naziv, TopikID, KorisnikID, Objavljen " .
-		"FROM topik " . 
-		"WHERE DatumObjave = '" . $currentDate . "'";					
+	}					
 	
 	// get current topic
-	$resultTopic = mysqli_query($db, $queryTopic) or die(mysqli_error());
+	$resultTopic = $executor->getRecord($queryTopic);
 	
-	$numTopics = mysqli_num_rows($resultTopic);
-	
-	if ($numTopics > 0) {
+	if ($resultTopic != 0) {
 		
-		$rowTopic = mysqli_fetch_array($resultTopic);
-		$topicName = $rowTopic["Naziv"];
-		$topikID = $rowTopic["TopikID"];
-		$topicsUserID = $rowTopic["KorisnikID"];
-		$topicPublished = $rowTopic["Objavljen"];
+		$topicName = $resultTopic["Naziv"];
+		$topikID = $resultTopic["TopikID"];
+		$topicsUserID = $resultTopic["KorisnikID"];
+		$topicPublished = $resultTopic["Objavljen"];
 
 		$response["topicName"] = $topicName;
 		
@@ -124,6 +149,10 @@
 			$pronounce->updateService();
 		}
 			
+		
+		// ############################################################################################# 
+		//
+		//		New queries
 			
 		$queryBig = "SELECT s.SlikaID, s.SlikaURL, s.BrojGlasova, k.KorisnikID, k.Username, " .
 			"(" .
@@ -157,18 +186,14 @@
 			"FROM slika_post " . 
 			"WHERE KorisnikID = " . $logedInUserID . " " . 
 			"AND TopikID = " . $topikID;
-		
-		
-		// get all big images from slika_post
-		$resultBig = mysqli_query($db, $queryBig) or die(mysqli_error());	
-		
-		// get all small images from slika_post
-		$resultSmall = mysqli_query($db, $querySmall) or die(mysqli_error());
+			
+		// ############################################################################################# 				
+
 		
 		// get number of uploaded images from current user
-		$resultUpload = mysqli_query($db, $queryUploadImg) or die(mysqli_error());
+		$resultUpload = $executor->getRecordSet($queryUploadImg);
 		
-		if ((mysqli_num_rows($resultUpload) > 0) || ($topicsUserID == $logedInUserID)) {
+		if (($resultUpload != 0) || ($topicsUserID == $logedInUserID)) {
 			
 			$response["uploadImg"] = false;
 		} else {
@@ -177,59 +202,67 @@
 		}
 		
 		// looping through all results
-		// products node
 		$response["big"] = array();
-		$response["small"] = array();			
+		$response["small"] = array();
 		
-		// number of big and small images from result
-		$numBig = mysqli_num_rows($resultBig);
-		$numSmall = mysqli_num_rows($resultSmall);	
-		
-		$response["countBig"] = $numBig;
-		$response["countSmall"] = $numSmall;
-		
-		
+		// get all big images from slika_post
+		$resultBig = $executor->getRecordSet($queryBig);					
 		
 		// check for empty result in big images
-		if ($numBig > 0) {		
+		if ($resultBig != 0) {		
+		
+			// how many big images
+			$response["countBig"] = count($resultBig);
 					
-			while ($rowBig = mysqli_fetch_array($resultBig)) {
+			for ($i = 0; $i < count($resultBig); $i++) {
+				
 				// temp user array
 				$productBig = array();
-				$productBig["slikaID"] = $rowBig["SlikaID"];
-				$productBig["url"] = $rowBig["SlikaURL"];
-				$productBig["glasovi"] = $rowBig["BrojGlasova"];
-				$productBig["userID"] = $rowBig["KorisnikID"];
-				$productBig["username"] = $rowBig["Username"];
-				$productBig["izglasano"] = $rowBig["Izglasano"];					
+				$productBig["slikaID"] = $resultBig[$i]["SlikaID"];
+				$productBig["url"] = $resultBig[$i]["SlikaURL"];
+				$productBig["glasovi"] = $resultBig[$i]["BrojGlasova"];
+				$productBig["userID"] = $resultBig[$i]["KorisnikID"];
+				$productBig["username"] = $resultBig[$i]["Username"];
+				$productBig["izglasano"] = $resultBig[$i]["Izglasano"];					
 		
 				// push single product into final response array
 				array_push($response["big"], $productBig);
-			}
+			}					
+			
+		} else {
+			$response["countBig"] = 0;
 		}
 		
+		// get all small images from slika_post
+		$resultSmall = $executor->getRecordSet($querySmall);					
+		
 		// check for empty result in small images
-		if ($numSmall > 0) {		
+		if ($resultSmall != 0) {		
+		
+			// how many small images
+			$response["countSmall"] = count($resultSmall);
 					
-			while ($rowSmall = mysqli_fetch_array($resultSmall)) {
+			for ($i = 0; $i < count($resultSmall); $i++) {
+				
 				// temp user array
 				$productSmall = array();
-				$productSmall["slikaID"] = $rowSmall["SlikaID"];
-				$productSmall["url"] = $rowSmall["SlikaURL"];
-				$productSmall["glasovi"] = $rowSmall["BrojGlasova"];
-				$productSmall["userID"] = $rowSmall["KorisnikID"];
-				$productSmall["username"] = $rowSmall["Username"];
-				$productSmall["izglasano"] = $rowSmall["Izglasano"];					
+				$productSmall["slikaID"] = $resultSmall[$i]["SlikaID"];
+				$productSmall["url"] = $resultSmall[$i]["SlikaURL"];
+				$productSmall["glasovi"] = $resultSmall[$i]["BrojGlasova"];
+				$productSmall["userID"] = $resultSmall[$i]["KorisnikID"];
+				$productSmall["username"] = $resultSmall[$i]["Username"];
+				$productSmall["izglasano"] = $resultSmall[$i]["Izglasano"];					
 		
 				// push single product into final response array
 				array_push($response["small"], $productSmall);
-			}
-		}
-	}
-	
-	
-	
-	
+			}					
+			
+		} else {
+			$response["countSmall"] = 0;
+		}							
+	} else {
+		$response["topicName"] = "Trenutno nema topika za današnji dan. Molimo vas, pokušajte kasnije, hvala.";
+	}				
 	
 	// echo response as JSON
 	echo json_encode($response);
