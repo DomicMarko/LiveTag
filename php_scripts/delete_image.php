@@ -1,5 +1,16 @@
 <?php
 
+	/*	################################################################
+
+	Autor: Marko Domić 2013/0240, tim Elites
+
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+	################################################################# */ 
+
+
+
 	/*
 	 * Following code will delete a product from table
 	 * A product is identified by product id (pid)

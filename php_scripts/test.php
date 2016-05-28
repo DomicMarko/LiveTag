@@ -1,6 +1,17 @@
 <?php
 
-		// include db connect class
+	/*	################################################################
+
+	Autor: Marko Domić 2013/0240, tim Elites
+
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+	################################################################# */ 
+
+
+
+	// include db connect class
 	require_once ('db_connect.php');
 	
 	// include Pronounce class

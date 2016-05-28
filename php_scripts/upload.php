@@ -1,5 +1,16 @@
 <?php
 
+	/*	################################################################
+
+	Autor: Marko Domić 2013/0240, tim Elites
+
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+	################################################################# */ 
+
+
+
 	require_once('units_definition.php');
 	require_once('image_checkout.php');
 	require_once('connection_queries.php');

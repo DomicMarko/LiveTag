@@ -24,7 +24,7 @@
     <meta name="description" content="">
     <meta name="author" content="">    
 
-    <title>LiveTag - Home</title>
+    <title>LiveTag - Početna</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -133,7 +133,9 @@
                 <span class="close">×</span>
                 <h2>Korisnici koji su glasali:</h2>
             </div>
-            <div id="modal-body" class="modal-body"></div>
+            <div class="modal-body-wrapper">
+	            <div id="modal-body" class="modal-body"></div>
+            </div>
         </div>
     </div>
 

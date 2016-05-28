@@ -1,3 +1,14 @@
+/*	################################################################
+
+	Autor: Marko Domić 2013/0240, tim Elites
+
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+################################################################# */ 
+
+
+
 $(document).ready(function (e) {
     $('#sendTopicForm').on('submit',(function(e) {
         e.preventDefault();

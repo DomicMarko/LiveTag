@@ -1,4 +1,16 @@
 <?php
+
+	/*	################################################################
+
+	Autor: Marko Domić 2013/0240, tim Elites
+
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+	################################################################# */ 
+
+
+
 	/*
 	 * Following code will list all the images and info about them
 	 */

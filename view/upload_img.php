@@ -14,12 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <script src="../js_scripts/jquery.js"></script>    
-    <script src="../js_scripts/bootstrap.min.js"></script>
-    <script src="../js_scripts/uploadImage.js" type="text/javascript"></script>
 
-    <title>LiveTag - Upload Image</title>
+    <title>LiveTag - Objavite sliku</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -117,6 +113,10 @@
 
     </div>
     <!-- /.container -->    
+	    
+    <script src="../js_scripts/jquery.js"></script>    
+    <script src="../js_scripts/bootstrap.min.js"></script>
+    <script src="../js_scripts/uploadImage.js" type="text/javascript"></script>
 
 </body>
 
