@@ -32,23 +32,25 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 			aLargeLike.className = 'likeLink';
 			aLargeLike.id = 'like_' + imgID;
 			aLargeLike.setAttribute('data-value', imgID);
-			/*
+			
 			var votedImg = document.createElement('img');
-			votedImg.setAttribute('src', '../icons/blue-bullet-clipart-1.png');
-			*/
+			votedImg.setAttribute('id', 'voted_' + imgID);
+			
+			aLargeLike.appendChild(votedImg);
+			
 			if(voted > 0) 
-				aLargeLike.innerHTML = "Unlike";
+				votedImg.setAttribute('src', '../icon/sphere.png');
 			else 
-				aLargeLike.innerHTML = "Like";
+				votedImg.setAttribute('src', '../icon/sphere_empty.png');
 				
-			//aLargeLike.appendChild(votedImg);
+			
 						
 		} else {
 			
 			var aLargeDelete = document.createElement('div');
 			aLargeDelete.className = 'deleteLink';
 			aLargeDelete.setAttribute('data-value', imgID);
-			aLargeDelete.innerHTML = "Obriši sliku";
+			aLargeDelete.innerHTML = "Obrišite sliku";
 			
 		}
 	}
@@ -58,7 +60,7 @@ function createLargeImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 		var aLargeDelete = document.createElement('div');
 		aLargeDelete.className = 'deleteLink';
 		aLargeDelete.setAttribute('data-value', imgID);
-		aLargeDelete.innerHTML = "Obriši sliku";
+		aLargeDelete.innerHTML = "Obrišite sliku";
 	}
 	
 	var aLargeUsername = document.createElement('a');
@@ -160,17 +162,23 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 			aSmallLike.className = 'likeLink';
 			aSmallLike.id = 'like_' + imgID;
 			aSmallLike.setAttribute('data-value', imgID);
+			
+			var votedImg = document.createElement('img');
+			votedImg.setAttribute('id', 'voted_' + imgID);
+			
+			aSmallLike.appendChild(votedImg);
+			
 			if(voted > 0) 
-				aSmallLike.innerHTML = "Unlike";
-			else
-				aSmallLike.innerHTML = "Like";	
+				votedImg.setAttribute('src', '../icon/sphere.png');
+			else 
+				votedImg.setAttribute('src', '../icon/sphere_empty.png');
 			
 		} else {
 			
 			var aSmallDelete = document.createElement('div');
 			aSmallDelete.className = 'deleteLink';
 			aSmallDelete.setAttribute('data-value', imgID);
-			aSmallDelete.innerHTML = "Obriši sliku";
+			aSmallDelete.innerHTML = "Obrišite sliku";
 			
 		}	
 	}
@@ -180,7 +188,7 @@ function createSmallImg(guestCheck, adminCheck, imgID, imgUrl, votes, userID, us
 		var aSmallDelete = document.createElement('div');
 		aSmallDelete.className = 'deleteLink';
 		aSmallDelete.setAttribute('data-value', imgID);
-		aSmallDelete.innerHTML = "Obriši sliku";
+		aSmallDelete.innerHTML = "Obrišite sliku";
 	}	
 	
 	var aSmallUsername = document.createElement('a');
@@ -316,7 +324,11 @@ function loadContent(data, userType) {
 			aUploadLinkUploadImg.innerHTML = '&bull; Objavite sliku';
 		
 			h4ElementUploadImg.appendChild(aUploadLinkUploadImg);
-			document.getElementById('uploadLink').appendChild(h4ElementUploadImg);	
+			
+			var liElementImg = document.createElement('li');
+			liElementImg.appendChild(h4ElementUploadImg);
+					
+			document.getElementById('uploadLink').appendChild(liElementImg);	
 		}	
 		
 		if (sendTopic) {
@@ -330,7 +342,11 @@ function loadContent(data, userType) {
 			aUploadLinkSendTopic.innerHTML = '&bull; Pošaljite topik';
 		
 			h4ElementSendTopic.appendChild(aUploadLinkSendTopic);
-			document.getElementById('uploadLink').appendChild(h4ElementSendTopic);	
+			
+			var liElementTopic = document.createElement('li');
+			liElementTopic.appendChild(h4ElementSendTopic);
+			
+			document.getElementById('uploadLink').appendChild(liElementTopic);	
 		}
 	}
 	
@@ -343,7 +359,11 @@ function loadContent(data, userType) {
 	aUploadLinkList.innerHTML = '&bull; Spisak topika i pobednika';
 		
 	h4ElementList.appendChild(aUploadLinkList);
-	document.getElementById('uploadLink').appendChild(h4ElementList);
+	
+	var liElementWin = document.createElement('li');
+	liElementWin.appendChild(h4ElementList);
+	
+	document.getElementById('uploadLink').appendChild(liElementWin);
 	
 
 	for( i = 0; i < bigImagesArray.length; i++ ) {
@@ -391,10 +411,10 @@ function changeVote(imageID, data) {
 	var numberOfVotes = objParsed.votes;
 	var voted = objParsed.voted;
 
-	if(document.getElementById('like_' + imageID).innerHTML == 'Like')
-		document.getElementById('like_' + imageID).innerHTML = 'Unlike';
+	if(document.getElementById('voted_' + imageID).getAttribute('src') == '../icon/sphere_empty.png')
+		document.getElementById('voted_' + imageID).setAttribute('src', '../icon/sphere.png');
 	else
-		document.getElementById('like_' + imageID).innerHTML = 'Like';
+		document.getElementById('voted_' + imageID).setAttribute('src', '../icon/sphere_empty.png');
 		
 	document.getElementById('votes_' + imageID).innerHTML = '(' + numberOfVotes + ')';
 	

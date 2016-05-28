@@ -19,6 +19,7 @@ if (mysqli_connect_errno($con))
         $_SESSION["userID"]=$row['KorisnikID'];
         $_SESSION["userName"]=$username;
         $_SESSION["userType"]=$row["TipKorisnika"];
+        $_SESSION["userAvatar"]=$row["AvatarURL"];
         header("Location: ../index.php");
       }else $output="Username ili password nisu tacni";
     }else $output="Username ili password nisu tacni";

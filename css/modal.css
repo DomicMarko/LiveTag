@@ -28,8 +28,9 @@
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
-    width: 35%;
+	width: 25%;
+    border: 3px solid #5bb85d; 
+	borcer-radius: 10px;   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -65,24 +66,24 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #DDD;
+    background-color: #5bb85d ;
     color: white;
 }
 
 .modal-body {
 	padding: 2px 16px;
-	height: 500px;
+	max-height: 500px;
 	overflow: scroll;
 }
 
 /* Listview */
 .modal-body div {
-  margin: 20px;
+  margin: 0px 20px;
 }
 
 .modal-body ul {
   list-style-type: none;
-  width: 500px;
+  width: 100%;
 }
 
 .modal-body h3 {
@@ -91,9 +92,10 @@
 
 .modal-body li div {
 	overflow: hidden;
-	width: 120px;
-	height: 120px;
+	width: 50px;
+	height: 50px;
 	float: left;
+	border-radius:50%;
 }
 
 .modal-body li img {
@@ -109,6 +111,11 @@
 .modal-body li {
   padding: 10px;
   overflow: auto;
+}
+
+.modal-body li h3 {
+	margin-top: 10px;
+	padding: 0;
 }
 
 li:hover {
@@ -168,7 +175,9 @@ li:hover {
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 35%;
+	width: 25%;
+    border: 3px solid #5bb85d; 
+	borcer-radius: 10px;   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -204,53 +213,56 @@ li:hover {
 
 .modal-header-message {
     padding: 2px 16px;
-    background-color: #DDD;
+    background-color: #5bb85d;
     color: white;
 }
 
 .modal-body-message {
 	padding: 2px 16px;
-	height: 500px;
+	max-height: 500px;
 	overflow: scroll;
 }
 
 /* Listview */
-.modal-body-message div {
-  margin: 20px;
+.modal-body-message {
+	padding: 50px;
+	font-size: 20px;
 }
 
-.modal-body-message ul {
-  list-style-type: none;
-  width: 500px;
+@media only screen and (max-width: 500px) {
+    .modal-content {
+        width: 320px;
+    }
+	
+	.modal-header h2 {
+		font-size: 20px;
+	}
+	
+	.modal-content-message {
+        width: 320px;
+    }
+	
+	.modal-header-message h2 {
+		font-size: 20px;
+	}		
 }
 
-.modal-body-message h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+@media only screen and (min-width: 501px) and (max-width: 1000px) {
+    .modal-content {
+        width: 50%;
+    }
+	
+	.modal-content-message {
+        width: 50%;
+    }
 }
 
-.modal-body-message li div {
-	overflow: hidden;
-	width: 120px;
-	height: 120px;
-	float: left;
-}
-
-.modal-body-message li img {
-  float: left;
-  margin: 0 15px 0 0;
-  width: 100%;
-}
-
-.modal-body-message li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
-
-.modal-body-message li {
-  padding: 10px;
-  overflow: auto;
-}
-
-li:hover {
-  background: #eee;
-  cursor: pointer;
+@media only screen and (min-width: 1001px) and (max-width: 1300px) {
+    .modal-content {
+        width: 40%;
+    }
+	
+	.modal-content-message {
+        width: 40%;
+    }
 }

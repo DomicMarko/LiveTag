@@ -52,16 +52,16 @@
           			<li id="newMessage"></li>                              
           			<?php
 				   		if(($_SESSION['userType'] != 'guest') && ($_SESSION['userType'] != 'admin')) {
-		  					echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\">" . $_SESSION['userName'] . "</a></li>"
-		  						. "<li><a href=\"../genal/logout.php\">Logout</a></li>";
+		  					echo "<li><a href=\"../andjela/profil.php?userID=" . $_SESSION['userID'] . "\"><div class=\"avatarWrapper\"><img src=\"../andjela/" . $_SESSION['userAvatar'] . "\"></div> " . $_SESSION['userName'] . "</a></li>"
+		  						. "<li><a href=\"../genal/logout.php\">Odjavite se</a></li>";
 				  		} 
 				  		if($_SESSION['userType'] == 'guest') {
-		  					echo "<li><a href=\"../genal/logout.php\">Ulogujte se</a></li>";
+		  					echo "<li><a href=\"../genal/logout.php\">Prijavite se</a></li>";
 		  				}
 				  		if($_SESSION['userType'] == 'admin') {
-				  			echo "<li><a href=\"../gazda/adminpanel.php\">Admin panel</a></li>" . 
-		  						"<li><a href=\"../gazda/moderator.php\">Moderator panel</a></li>" . 
-		  						"<li><a href=\"../genal/logout.php\">Logout</a></li>";
+				  			echo "<li><a href=\"../gazda/adminpanel.php\">Adminov panel</a></li>" . 
+		  						"<li><a href=\"../gazda/moderator.php\">Panel moderatora</a></li>" . 
+		  						"<li><a href=\"../genal/logout.php\">Odjavite se</a></li>";
 		  				}
 				  	?>                    
           		</ul>
@@ -83,19 +83,20 @@
         </div>
         
         <hr>
-    
+        
+        <div class="row">
+	    	<div class="col-md-12">
+                <ul class="list-group" id="uploadLink"></ul>
+        	</div>
+        </div>
+        
+        <hr>
+        
     	<div class="row">            
-            <div class="col-md-9">				
-                
+            <div class="col-md-12">				                
                 <!-- Place where images will be loaded -->        
-		        <div id="addRowsPoint"></div>                                    
-                
-            </div>            
-            
-            <div class="col-md-3">
-                <div class="list-group" id="uploadLink"></div>
-            </div>
-            
+		        <div id="addRowsPoint"></div>                                                    
+            </div>                                                
         </div> 
 
         <hr>       
@@ -104,7 +105,7 @@
 
         <!-- Footer -->
         <footer>
-            <div class="row">
+            <div class="row footerCustom">
                 <div class="col-lg-12">
                     <p>Elites &nbsp;&nbsp;| &nbsp;&nbsp;Copyright &copy; 2016 &nbsp;&nbsp;| &nbsp;&nbsp;Sva prava zadržana,  autor projekta tim Elites.</p>
                 </div>
