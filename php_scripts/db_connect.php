@@ -25,7 +25,7 @@
 		 */
 		function connect() {
 			// import database connection variables
-			require_once ('db_config.php');
+			require_once ('../db_config.php');
 	
 			// Connecting to mysql database
 			$this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD) or die(mysqli_error());
