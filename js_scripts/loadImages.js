@@ -632,6 +632,7 @@ function votes(usersPoint, imgID) {
 		data: {'imageID': imgID},
         success:function(result){
 			addUsersVotes(usersPoint, result);
+			document.getElementById('myModal').style.display = "block";
         },
         error: function(result){
 	        alert("Error: " + result);                
@@ -715,8 +716,7 @@ function events() {
 		var modal = document.getElementById('modal-body');
 		var imageID = this.getAttribute('data-value');
 		
-		votes(modal, imageID);				
-		document.getElementById('myModal').style.display = "block";		
+		votes(modal, imageID);						
 	});
 	
 	$('.close').on("click", function() {		
