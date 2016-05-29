@@ -17,6 +17,9 @@
 	
 	// include db connect class
 	require_once ('db_connect.php');
+
+	// include queryExecutor class
+	require_once ('connection_queries.php');
 	
 	// array for JSON response
 	$response = array();
@@ -25,72 +28,62 @@
 	$dbb = new DB_CONNECT();
 	
 	$db = $dbb->getDb();
+
+	// making reserve query executor
+	$executor = new queryExecutor($db);
 	
 	$userLikeID = $_POST['userLike'];
 	$imgID = $_POST['imgID'];
-	
+
+	// ############################################################################################# 
+	//
+	//		All queries
+
 	$queryNumVotes = "SELECT * " . 
 		"FROM glasovi " . 
 		"WHERE KorisnikID = " . $userLikeID . " " .
 		"AND SlikaID = " . $imgID;
+
+	$queryDelete = "DELETE FROM glasovi " . 
+		"WHERE KorisnikID = " . $userLikeID . " " .
+		"AND SlikaID = " . $imgID;		
+
+	$queryInsert = "INSERT INTO glasovi " . 
+		"VALUES (" . $userLikeID . ", " . $imgID . ")";
+	
+	$queryVotes = "SELECT BrojGlasova " . 
+		"FROM slika_post " . 
+		"WHERE SlikaID = " . $imgID;
+
+	// ############################################################################################# 
+	
 		
 	// get current topic
-	$resultVotes = mysqli_query($db, $queryNumVotes) or die(mysqli_error());	
+	$resultVotes = $executor->getRecord($queryNumVotes);	
 	
-	if (mysqli_num_rows($resultVotes) > 0) {
-		
-		$queryInsertDelete = "DELETE FROM glasovi " . 
-			"WHERE KorisnikID = " . $userLikeID . " " .
-			"AND SlikaID = " . $imgID;
-		
-		$queryDecrementVote = "UPDATE slika_post " . 
-			"SET BrojGlasova = BrojGlasova - 1 " . 
-			"WHERE SlikaID = " . $imgID;
-			
-		$queryVotes = "SELECT BrojGlasova " . 
-			"FROM slika_post " . 
-			"WHERE SlikaID = " . $imgID;
-			
-		$resultDelete = mysqli_query($db, $queryInsertDelete) or die(mysqli_error());		
-		$resultVotesUpdate = mysqli_query($db, $queryDecrementVote) or die(mysqli_error());
-		
-		$resultVotesNumber = mysqli_query($db, $queryVotes) or die(mysqli_error());
-		
-		if(mysqli_num_rows($resultVotesNumber) > 0) {
-			
-			$rowPost = mysqli_fetch_array($resultVotesNumber);
-			$numberOfVotes = $rowPost[0];
-			
-			$response["votes"] = $numberOfVotes;
-			$response["voted"] = false;
-		}
-								
+	if ($resultVotes != 0) {		
+
+		// Delete from `glasovi` table vote			
+		$executor->queryWithoutRecords($queryDelete);	
+		$response["voted"] = false;											
 	} else {
 		
-		$queryInsertDelete = "INSERT INTO glasovi " . 
-			"VALUES (" . $userLikeID . ", " . $imgID . ")";
+		// Insert into `glasovi` table new vote			
+		$executor->queryWithoutRecords($queryInsert);	
+		$response["voted"] = true;			
+	}
+
+	// Get current number of votes for certain image
+	$resultVotesNumber = $executor->getRecord($queryVotes);				
 		
-		$queryDecrementVote = "UPDATE slika_post " . 
-			"SET BrojGlasova = BrojGlasova + 1 " . 
-			"WHERE SlikaID = " . $imgID;
+	if($resultVotesNumber != 0) {
+					
+		$numberOfVotes = $resultVotesNumber["BrojGlasova"];
 			
-		$queryVotes = "SELECT BrojGlasova " . 
-			"FROM slika_post " . 
-			"WHERE SlikaID = " . $imgID;
-			
-		$resultInsert = mysqli_query($db, $queryInsertDelete) or die(mysqli_error());		
-		$resultVotesUpdate = mysqli_query($db, $queryDecrementVote) or die(mysqli_error());
-		
-		$resultVotesNumber = mysqli_query($db, $queryVotes) or die(mysqli_error());
-		
-		if(mysqli_num_rows($resultVotesNumber) > 0) {
-			
-			$rowPost = mysqli_fetch_array($resultVotesNumber);
-			$numberOfVotes = $rowPost[0];
-			
-			$response["votes"] = $numberOfVotes;
-			$response["voted"] = true;
-		}
+		$response["votes"] = $numberOfVotes;
+
+	} else {
+		$response["votes"] = 0;
 	}
 			
 	// echo response as JSON
