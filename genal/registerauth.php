@@ -20,7 +20,7 @@ if (mysqli_connect_errno($con))
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$hash=password_hash($password,PASSWORD_DEFAULT);
-		 $statement = mysqli_prepare($con,"INSERT INTO korisnik (Username,Password,Ime,Prezime,DatumRodjenja,MestoStanovanja,Pol,Email,BrojPoena,TipKorisnika,StiglaPoruka) VALUES (?,?,?,?,?,?,?,?,0,'basic',0)");
+		 $statement = mysqli_prepare($con,"INSERT INTO korisnik (Username,Password,Ime,Prezime,DatumRodjenja,MestoStanovanja,Pol,Email,BrojPoena,TipKorisnika,StiglaPoruka,AvatarURL) VALUES (?,?,?,?,?,?,?,?,0,'basic',0,'slike/default_user.png')");
 		mysqli_stmt_bind_param($statement,"ssssssss",$username,$hash,$ime,$prezime,$datum,$mesto,$pol,$email );
 		mysqli_stmt_execute($statement);
 		mysqli_stmt_close($statement);
