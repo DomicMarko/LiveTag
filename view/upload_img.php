@@ -86,7 +86,7 @@
 		<form enctype="multipart/form-data" method="POST" id="imageUploadForm">
         
         	<div class="form-group">
-    			<label for="inputFile">Učitajte sliku sa vašeg računara:</label>
+    			<label for="inputFile">Učitajte sliku sa vašeg računara (veličina slike do 5MB):</label>
     			<input type="file" name="fileToUpload" id="fileToUpload">
   			</div>
                       

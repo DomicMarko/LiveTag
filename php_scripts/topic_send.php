@@ -14,7 +14,8 @@
 	require_once('units_definition.php');
 	require_once('image_checkout.php');
 	require_once('connection_queries.php');
-	require_once('db_connect.php');
+	require_once('db_connect.php');		
+	require_once ('connection_queries.php');
 	
 	$topicID = 0;
 	

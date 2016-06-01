@@ -9,7 +9,7 @@
 	
 	################################################################# */ 
 
-
+	require_once('units_definition.php');
 
 	class ImageCheckout {
 				
@@ -54,21 +54,21 @@
 			// Check if file already exists
 			if (file_exists($this->target_file)) {
 				
-				$this->message = $this->message . "<br/>" . "Sorry, file already exists.";
+				$this->message = $this->message . "<br/>" . "Ovakva slika već postoji u sistemu.";
 				$status = 0;
 			}
 			
 			// Check file size
 			if ($_FILES[$this->inputFileName]["size"] > 5*MB) {
 				
-				$this->message = $this->message . "<br/>" . "Sorry, your file is too large. ";
+				$this->message = $this->message . "<br/>" . "Vaša slika je prevelika (dozvoljena veličina do 5MB). ";
 				$status = 0;				
 			}
 			
 			// Allow certain file formats
 			if($typeOfImage != "jpg" && $typeOfImage != "png" && $typeOfImage != "jpeg" && $typeOfImage != "gif" ) {
 				
-				$this->message = $this->message . "<br/>" . "Sorry, only JPG, JPEG, PNG & GIF files are allowed. ";
+				$this->message = $this->message . "<br/>" . "Dozvoljeni su samo JPG, JPEG, PNG i GIF formati slika. ";
 				$status = 0;				
 			}
 			

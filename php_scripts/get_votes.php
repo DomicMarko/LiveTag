@@ -18,6 +18,9 @@
 	// include db connect class
 	require_once ('db_connect.php');
 
+	// include queryExecutor class
+	require_once ('connection_queries.php');
+
 	// array for JSON response
 	$response = array();
 	
@@ -27,7 +30,12 @@
 	// connecting to db
 	$dbb = new DB_CONNECT();
 	
-	$db = $dbb->getDb();		
+	$db = $dbb->getDb();
+
+	// making new query executor
+	$executor = new queryExecutor($db);		
+
+	$response["votes"] = array();
 	
 	$queryForVotes = "SELECT k.KorisnikID, k.Username, k.AvatarURL " .
 		"FROM glasovi g, korisnik k " . 
@@ -35,23 +43,22 @@
 		"AND g.KorisnikID = k.KorisnikID";					
 	
 	// get votes
-	$resultVotes = mysqli_query($db, $queryForVotes) or die(mysqli_error());
-	
-	$response["votes"] = array();
+	$resultVotes = $executor->getRecordSet($queryForVotes);//mysqli_query($db, $queryForVotes) or die(mysqli_error());
 
-	if (mysqli_num_rows($resultVotes) > 0) {
+	if ($resultVotes != 0) {
 
 		$response["status"] = 1;
 		
-		while ($rowVote = mysqli_fetch_array($resultVotes)) {
+		for ($i = 0; $i < count($resultVotes); $i++) {
+
 			// temp user array
 			$userVote = array();
-			$productBig["userID"] = $rowVote["KorisnikID"];
-			$productBig["username"] = $rowVote["Username"];
-			$productBig["avatarURL"] = $rowVote["AvatarURL"];				
+			$userVote["userID"] = $resultVotes[$i]["KorisnikID"];
+			$userVote["username"] = $resultVotes[$i]["Username"];
+			$userVote["avatarURL"] = $resultVotes[$i]["AvatarURL"];				
 	
 			// push single product into final response array
-			array_push($response["votes"], $productBig);
+			array_push($response["votes"], $userVote);
 		}
 			
 	} else {

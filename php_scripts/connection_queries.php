@@ -25,6 +25,7 @@
 		public function queryWithoutRecords($query) {
 		
 			$result = mysqli_query($this->connLine, $query) or die(mysqli_error());
+			return $result;
 		}
 		
 

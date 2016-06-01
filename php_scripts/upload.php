@@ -11,7 +11,6 @@
 
 
 
-	require_once('units_definition.php');
 	require_once('image_checkout.php');
 	require_once('connection_queries.php');
 	require_once('db_connect.php');
@@ -23,29 +22,49 @@
 			
 	$db = $dbb->getDb();
 
+	// making new query executor
+	$executor = new queryExecutor($db);
+
 	$currentDate = date("Y-m-d");
-
-	$queryTopic = "SELECT TopikID " .
-		"FROM topik " . 
-		"WHERE DatumObjave = '" . $currentDate . "'";					
-	
-	// get current topic
-	$resultTopic = mysqli_query($db, $queryTopic) or die(mysqli_error());
-	
-	if (mysqli_num_rows($resultTopic) > 0) {
-		
-		$rowTopic = mysqli_fetch_array($resultTopic);				
-
-		$topicID = $rowTopic["TopikID"];
-			
-	}
 
 	$response = array();
 
 	$userID = $_POST['userID'];
 
 	$target_dir = "../slike_posts/";
-	$target_file = $target_dir . $topicID . '-' . $userID . '-' . basename($_FILES["fileToUpload"]["name"]);
+	$target_file = $target_dir . $topicID . '-' . $userID . '-' . basename($_FILES["fileToUpload"]["name"]);					
+
+
+
+	// ############################################################################################# 
+	//
+	//		All queries
+
+	$queryTopic = "SELECT TopikID " .
+		"FROM topik " . 
+		"WHERE DatumObjave = '" . $currentDate . "'";
+
+	// ############################################################################################# 
+
+
+	// get current topic
+	$resultTopic = $executor->getRecord($queryTopic);
+	
+	if ($resultTopic != 0) {			
+
+		$topicID = $resultTopic["TopikID"];
+			
+	}
+
+	// ############################################################################################# 
+	//
+	//		New queries
+
+
+	$queryInsertNew = "INSERT INTO slika_post (SlikaURL, KorisnikID, TopikID, BrojGlasova) " . 
+		"VALUES ('" . $target_file . "', '" . $userID . "', '" . $topicID . "', 0)";
+
+	// ############################################################################################# 
 	
 	$checkOut = new ImageCheckout('fileToUpload', $target_file, $userID, $topicID);	
 	
@@ -62,17 +81,10 @@
 	} else { // if everything is ok, try to upload file
 	
     	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			
-			// connecting to db
-			$dbb = new DB_CONNECT();
-			
-			$db = $dbb->getDb();			
+					
 			
 			// insert into slika_post table
-			$result = mysqli_query($db, "INSERT INTO slika_post (SlikaURL, KorisnikID, TopikID, BrojGlasova) VALUES ('$target_file', '$userID', '$topicID', 0)") or die(mysql_error());
-
-			// update column ZadnjaObjava in korisnik table
-			$resultUpdate = mysqli_query($db, "UPDATE korisnik SET ZadnjaObjava = '$currentDate' WHERE KorisnikID = '$userID'") or die(mysql_error());
+			$result = $executor->queryWithoutRecords($queryInsertNew);
 				
 			if($result) {
 				
@@ -80,13 +92,13 @@
 				$response['success'] = 1;
 			} else {
 				
-				$response['message'] = 'Sorry, there was an error uploading your file.';	
+				$response['message'] = 'Izvinjavamo se, došlo je do greške pri objvaljivanju slike.';	
 				$response['success'] = 0;
 			}
 
 	    } else {
 			
-    	    $response['message'] = 'Sorry, there was an error uploading your file.';
+    	    $response['message'] = 'Izvinjavamo se, došlo je do greške pri objvaljivanju slike.';
     	    $response['success'] = 0;
     	}
 	}
