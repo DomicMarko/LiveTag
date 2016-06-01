@@ -72,7 +72,7 @@ include '../genal/checkadmin.php';
 	</div>
 	<div id="container">
 		<div id="gore">
-			<form action="createZaAdmina.php" method="post">
+			<form action="create.php" method="post">
 				<center><h2 style="margin-top: 0; margin-left: 20px; padding-top: 20px;">Unesite topik koji zelite da bude objavljen (max 30 karaktera):</h2></center>
 				<center><input name="inputName" type="text" style="width:80%; margin-left: 20px;"></input><br></center>									
 				<center><input name="submit" type="submit" value="Dodajte topik" style="padding: 10px; margin-top: 10px; margin-left:73%;"></input></center>
@@ -90,7 +90,7 @@ include '../genal/checkadmin.php';
 				
 				while($topiks = mysql_fetch_array($result)){
 					if($topiks['Objavljen'] == 0){
-					echo "<h3>" . $topiks['TopikID'] . ". ", $topiks['Naziv'] . " - " . "$topiks[DatumObjave]" . " " . "<a class=" . "klasica" . " href='deleteZaAdmina.php?del=$topiks[TopikID]'>delete</a>" . "</h3>";
+					echo "<h3>" . $topiks['TopikID'] . ". ", $topiks['Naziv'] . " - " . "$topiks[DatumObjave]" . " " . "<a class=" . "klasica" . " href='delete.php?del=$topiks[TopikID]'>delete</a>" . "</h3>";
 				   }
 				}
 			?>
@@ -114,7 +114,7 @@ include '../genal/checkadmin.php';
 			</div>
 		</div>  <br><br><br>
 			<div class="poruka">
-				<form align="center" action="swaptopikadm.php" method="post">
+				<form align="center" action="swaptopik.php" method="post">
 					<h1 style="margin-top: 0px; text-align: center; padding-top: 20px; margin-bottom: 0px;">Swapujte 2 topika:</h1><br>
 					<div style="text-align:center; margin: auto; width: 100%;">
 					<div style="width:100%; ">Naziv prvog topika: <input name="top1" type="text" style="width:33%; margin-left: 20px;"></input></div><br>
@@ -131,7 +131,7 @@ include '../genal/checkadmin.php';
 			</div>
 		
 			<div id="poruka">
-				<form align="center" action="admposaljiporuku.php" method="post">
+				<form align="center" action="posaljiporuku.php" method="post">
 					<h1 style="margin-top: 0px; text-align: center; padding-top: 20px; margin-bottom: 0px;">Posaljite poruku korisniku:</h1><br>
 					<div style="text-align:center; margin: auto; width: 100%;">
 					<div style="width:100%; ">Korisnicko ime korisnika: <input name="inputUser" type="text" style="width:30%; margin-left: 20px;"></input></div><br>

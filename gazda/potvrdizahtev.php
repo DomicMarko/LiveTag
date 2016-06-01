@@ -1,4 +1,7 @@
 <?php
+	
+	session_start();
+	
 	error_reporting(E_ALL ^ E_DEPRECATED);
 
 	include 'connection.php';
@@ -21,6 +24,9 @@
 		mysql_query("UPDATE topik SET KorisnikID='$idkor' WHERE Naziv = '$name'") or die(mysql_error());
 		mysql_query("DELETE FROM zahtev WHERE ZahtevID='$id'") or die(mysql_error());
 		
-		echo "<meta http-equiv='refresh' content='0; url=adminmoderator.php'>";
+		
+		if($_SESSION["userType"]=="mod")
+		echo "<meta http-equiv='refresh' content='0; url=moderator.php'>";
+		else if($_SESSION["userType"]=="admin") echo "<meta http-equiv='refresh' content='0; url=adminmoderator.php'>";
 	}
 ?>
