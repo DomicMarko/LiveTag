@@ -1,12 +1,12 @@
+
+
+<?php
 	/*	################################################################
 	Autor: Aleksandar Genal 2013/0012, tim Elites
 	Projekat: LiveTag
 	Verzija: 1.0
 	
 	################################################################# */ 
-
-<?php
-
 include 'config.php';
 
 $con=mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
