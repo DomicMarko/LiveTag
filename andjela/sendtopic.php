@@ -1,3 +1,11 @@
+<!--################################################################
+	Autor: Andjela Spasić 2013/0055, tim Elites
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+################################################################# 
+-->
+
 <link rel="stylesheet" type="text/css" href="sendtopiccss.css">
 <?php
 	require_once('../genal/checklogin.php');

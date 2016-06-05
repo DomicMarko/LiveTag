@@ -1,3 +1,11 @@
+<!--################################################################
+	Autor: Veljko Marković 2013/0137, tim Elites
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+################################################################# 
+-->
+
 <?php
 include '../genal/checklogin.php';
 include '../genal/checkmod.php';
@@ -106,7 +114,7 @@ include '../genal/checkmod.php';
 					$id1 = $topiks['KorisnikID'];
 					$info = mysql_fetch_array(mysql_query("SELECT * FROM `korisnik` WHERE `KorisnikID` = '$id1'"));
 					$username = $info['Username'];
-					echo "<h3>" . $topiks['Naziv'] . " - ", $username .  "<a class=" . "klasica" . " href='deletezahtev.php?del=$topiks[ZahtevID]'>Odbij</a>" . "<a class=" . "klasica" . " href='potvrdizahtevmod.php?novi=$topiks[ZahtevID]'>Potvrdi</a>" . "</h3>";
+					echo "<h3>" . $topiks['Naziv'] . " - ", $username .  "<a class=" . "klasica" . " href='deletezahtev.php?del=$topiks[ZahtevID]'>Odbij</a>" . "<a class=" . "klasica" . " href='potvrdizahtev.php?novi=$topiks[ZahtevID]'>Potvrdi</a>" . "</h3>";
 				}
 			?>
 			</div>

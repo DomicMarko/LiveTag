@@ -1,3 +1,11 @@
+<!--################################################################
+	Autor: Andjela Spasić 2013/0055, tim Elites
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+################################################################# 
+-->
+
 <?php
 
 // Page créé par Shepard [Fabian Pijcke] <Shepard8@laposte.net>

@@ -1,3 +1,11 @@
+<!--################################################################
+	Autor: Veljko Marković 2013/0137, tim Elites
+	Projekat: LiveTag
+	Verzija: 1.0
+	
+################################################################# 
+-->
+
 <?php
 			error_reporting(E_ALL ^ E_DEPRECATED);
 
