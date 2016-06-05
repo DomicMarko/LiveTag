@@ -10,7 +10,7 @@
 /*
  * All database connection variables
  */
-include("../dbconfig.php");
+include("../db_config.php");
 /*define('DB_USER', "root"); // db user
 define('DB_PASSWORD', ""); // db password (mention your db password here)
 define('DB_DATABASE', "livetag"); // database name
