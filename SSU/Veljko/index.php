@@ -8,8 +8,6 @@
 	Verzija: 1.0
 	
 	################################################################# */ 
-
-
-
-	echo shell_exec ('get_all_content.php');
+	
+	header('Location:../index.php');
 ?>
