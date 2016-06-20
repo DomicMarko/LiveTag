@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2016 at 10:19 PM
+-- Generation Time: Jun 20, 2016 at 11:22 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -150,24 +150,25 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   PRIMARY KEY (`KorisnikID`),
   UNIQUE KEY `KorisnikID_UNIQUE` (`KorisnikID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `korisnik`
 --
 
 INSERT INTO `korisnik` (`KorisnikID`, `Username`, `Password`, `Ime`, `Prezime`, `DatumRodjenja`, `MestoStanovanja`, `Pol`, `Email`, `BrojPoena`, `ZadnjaObjava`, `TipKorisnika`, `AvatarURL`, `StiglaPoruka`, `PorukaZaElite`) VALUES
-(12, 'admin', '$2y$10$938vMKY6rVcGs7YVG2.dJuvQu2pWDqZ7AIUBjJL4vwAGvHAb5Krsu', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, NULL, 'admin', NULL, 0, NULL),
+(12, 'admin', '$2y$10$TnDMnedXQH4jBHVioZcOW.4QtAGlC.65l.DQAQnpeAB/ONWKiqQdy', 'admin', 'admin', '2016-01-01', 'Zemun', 'M', 'admin@admin.com', 0, NULL, 'admin', NULL, 0, NULL),
 (13, 'mod', '$2y$10$3ledFC3yDPXp7YV3r7OxPOdiut1wtW8N3uWDF1ypuBGSSEUAy8O7C', 'moderator', 'moderator', '2016-01-01', 'Zemun', 'Z', 'mod@mod.com', 0, NULL, 'mod', NULL, 0, NULL),
-(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 296, '2016-06-01', 'elite', 'slike/marko.jpg', 0, NULL),
-(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 96, '2016-05-27', 'basic', 'slike/rob.jpg', 0, NULL),
-(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 95, '2016-05-27', 'basic', 'slike/geko.jpg', 0, NULL),
-(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 108, '2016-05-28', 'premium', 'slike/merkel.jpg', 1, 'ÄŒestitamo! Osvojili ste 2. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 18 poena, vaÅ¡ ukupni broj ostvarenih poena je 108, vaÅ¡ trenutni status je "premium".'),
-(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 166, '2016-05-28', 'premium', 'slike/diamond.jpg', 1, 'ÄŒestitamo! Osvojili ste 1. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 20 poena, vaÅ¡ ukupni broj ostvarenih poena je 166, vaÅ¡ trenutni status je "premium".'),
-(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 98, '2016-06-01', 'basic', 'slike/sestra.jpg', 0, NULL),
-(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 86, '2016-05-28', 'basic', 'slike/vicde.JPG', 1, 'ÄŒestitamo! Osvojili ste 3. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 16 poena, vaÅ¡ ukupni broj ostvarenih poena je 86, vaÅ¡ trenutni status je "basic".'),
-(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 51, '2016-05-26', 'basic', 'slike/gio.jpg', 0, NULL),
-(23, 'DomicTest', '$2y$10$oDQTkSTh19N8MmlcaD5vm.uRwYGvFnUs6djigHNA.IzLxqL.KoIxm', 'Marko', 'Domic', '2016-01-01', 'Zemun', 'M', 'domicmarko94@gmail.com', 0, NULL, 'basic', 'slike/default_user.png', 0, NULL);
+(14, 'micdo', '$2y$10$s4zD0m7oR4NQUz1Hi2Gh0OjVP7dTxjsMR6sxknMIWBGXO/IFyqSCi', 'Marko', 'Domi&#263;', '1994-01-25', 'Zemun', 'M', 'micdo94@outlook.com', 294, '2016-06-01', 'elite', 'slike/marko.jpg', 0, NULL),
+(15, 'gazda', '$2y$10$U/f1Sg2ilEAL3J2SM3H5EuJsbVSTYsua2v9jlS5v.itqaGr/h6b2m', 'Veljko', 'Markovic', '1994-06-04', 'Miljakovac', 'M', 'mv130137d@student.etf.rs', 94, '2016-05-27', 'basic', 'slike/rob.jpg', 0, NULL),
+(16, 'geko', '$2y$10$SpV2MuRZlVaTHQBhss8ztenkVuEOjtMQYDkTNzNP6zBPMvgqVT4Ji', 'Aleksandar', 'Genal', '1995-01-25', 'Zemun', 'M', 'ga130012d@student.etf.rs', 93, '2016-05-27', 'basic', 'slike/geko.jpg', 0, NULL),
+(17, 'merkel', '$2y$10$ES6HMXj4.G3v72nDUw7M9uhgdUau8RneyCcbkVAzum/bvp0WfvgVK', 'Andjela', 'Spasic', '1994-03-02', 'NBG', 'Z', 'sa130055d@student.etf.rs', 106, '2016-05-28', 'premium', 'slike/merkel.jpg', 1, 'ÄŒestitamo! Osvojili ste 2. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 18 poena, vaÅ¡ ukupni broj ostvarenih poena je 108, vaÅ¡ trenutni status je "premium".'),
+(18, 'diamond', '$2y$10$JiTb9gwmeZ4jjpmqJD4fsOH79NYAGHskPht1P0SPhSObJpLDAbQgq', 'Marija', 'Radovic', '1994-10-01', 'Vozdovac', 'Z', 'makica@hotmail.com', 164, '2016-05-28', 'premium', 'slike/diamond.jpg', 1, 'ÄŒestitamo! Osvojili ste 1. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 20 poena, vaÅ¡ ukupni broj ostvarenih poena je 166, vaÅ¡ trenutni status je "premium".'),
+(19, 'domara', '$2y$10$wjMiqCxeqyn1ymoU0.qN4eYlpsE7/LW/TIKCW6U2rOLpiJX.LhB4y', 'Marija', 'Domi&#263;', '1995-09-05', 'Zemun', 'Z', 'domicka@hotmail.com', 96, '2016-06-01', 'basic', 'slike/sestra.jpg', 0, NULL),
+(20, 'vicde', '$2y$10$.dCux98afYwFrcaRk6TWOuswd5aHYOLNX/vggzItiOE4kY0e4.ZPC', 'Aleksandar', 'Devic', '1994-06-18', 'Zemun', 'M', 'vicdemunze@hotmail.com', 84, '2016-05-28', 'basic', 'slike/vicde.JPG', 1, 'ÄŒestitamo! Osvojili ste 3. mesto sa vaÅ¡om slikom prethodnog dana. Osvojili ste 16 poena, vaÅ¡ ukupni broj ostvarenih poena je 86, vaÅ¡ trenutni status je "basic".'),
+(21, 'lukica', '$2y$10$sGmCSf3yGOItjLbsfNoXouMO5UwESRkJRoaHTQUq/tEdZuxEC5ntu', 'Luka', 'Ognjanov', '1994-12-28', 'Zemun', 'M', 'lukica@gmail.com', 49, '2016-05-26', 'basic', 'slike/gio.jpg', 0, NULL),
+(23, 'DomicTest', '$2y$10$oDQTkSTh19N8MmlcaD5vm.uRwYGvFnUs6djigHNA.IzLxqL.KoIxm', 'Marko', 'Domic', '2016-01-01', 'Zemun', 'M', 'domicmarko94@gmail.com', 0, NULL, 'basic', 'slike/default_user.png', 0, NULL),
+(25, 'test', '$2y$10$K7tACSHUNYRSaDpyNMlQIuGNTW7Lyif/dYZ2/7cCnGYzxUYjApH6e', 'Test', 'Register', '2005-05-05', 'BG', 'M', 'test@test.rs', 0, NULL, 'basic', 'slike/default_user.png', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `topik` (
   KEY `TreceMesto_idx` (`TreceMesto`),
   KEY `CetvrtoMesto_idx` (`CetvrtoMesto`),
   KEY `PetoMesto_idx` (`PetoMesto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `topik`
@@ -280,10 +281,34 @@ INSERT INTO `topik` (`TopikID`, `Naziv`, `DatumObjave`, `Objavljen`, `PrvoMesto`
 (3, 'TopikTest3', '2016-05-26', 2, 61, 62, 64, 63, 65, 13),
 (4, 'TopicTest4', '2016-05-27', 2, 70, 73, 74, 72, NULL, NULL),
 (5, 'TopicTest5', '2016-05-28', 2, 76, 75, 77, 80, NULL, NULL),
-(6, 'TopicTest6', '2016-05-30', 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'TopicTest7', '2016-06-01', 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'TopicTest6', '2016-05-30', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'TopicTest7', '2016-06-01', 2, NULL, NULL, NULL, NULL, NULL, NULL),
 (8, 'TopicTest8', '2016-05-31', 2, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'TopicTest9', '2016-05-29', 1, NULL, NULL, NULL, NULL, NULL, NULL);
+(9, 'TopicTest9', '2016-05-29', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'asdasdas', '2016-06-02', 2, NULL, NULL, NULL, NULL, NULL, 14),
+(11, 'zakasnio1', '2016-06-03', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'zakasnio2', '2016-06-04', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'zakasnio3', '2016-06-05', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'zakasnio4', '2016-06-06', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'zakasnio5', '2016-06-07', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'zakasnio6', '2016-06-08', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'zakasnio7', '2016-06-09', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'zakasnio8', '2016-06-10', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 'zakasnio9', '2016-06-11', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 'zakasnio10', '2016-06-12', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'zakasnio11', '2016-06-13', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 'zakasnio12', '2016-06-14', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 'zakasnio13', '2016-06-15', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 'zakasnio14', '2016-06-16', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 'zakasnio15', '2016-06-17', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 'zakasnio16', '2016-06-18', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 'zakasnio17', '2016-06-19', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'Odbrana domaceg', '2016-06-20', 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 'posle odbrane 1. dan', '2016-06-21', 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, 'posle odbrane 2. dan', '2016-06-22', 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 'posle odbrane 3. dan', '2016-06-23', 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 'posle odbrane 4. dan', '2016-06-24', 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 'posle odbrane 5. dan', '2016-06-25', 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -297,14 +322,7 @@ CREATE TABLE IF NOT EXISTS `zahtev` (
   `KorisnikID` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`ZahtevID`),
   KEY `Korisnik_idx` (`KorisnikID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `zahtev`
---
-
-INSERT INTO `zahtev` (`ZahtevID`, `Naziv`, `KorisnikID`) VALUES
-(2, 'asdasdas', 14);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
